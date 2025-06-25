@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parts Price Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .search-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .results-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .results-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .results-count {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .parts-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .part-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .part-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .part-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .part-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .part-reference {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .part-category {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .suppliers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .supplier-card {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .supplier-card:hover {
+            background: #edf2f7;
+            border-color: #667eea;
+        }
+
+        .supplier-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .supplier-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .supplier-delivery {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .supplier-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .order-btn {
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .order-btn:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .best-price {
+            position: relative;
+        }
+
+        .best-price::after {
+            content: '🏆 Best Price';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #f6ad55;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(246, 173, 85, 0.3);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #edf2f7;
+            border: 2px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .suppliers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 Car Parts Price Comparison</h1>
+            <p>Find the best prices for your car parts across multiple suppliers</p>
+        </div>
+
+        <div class="search-panel">
+            <div class="search-grid">
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <select id="brand">
+                        <option value="">Select Brand</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="citroen">Citroën</option>
+                        <option value="peugeot">Peugeot</option>
+                        <option value="renault">Renault</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="bmw">BMW</option>
+                        <option value="mercedes">Mercedes-Benz</option>
+                        <option value="audi">Audi</option>
+                        <option value="ford">Ford</option>
+                        <option value="opel">Opel</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <select id="model">
+                        <option value="">Select Model</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="engine-type">Engine Type</label>
+                    <select id="engine-type">
+                        <option value="">Select Engine Type</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="electric">Electric</option>
+                        <option value="lpg">LPG</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="engine-capacity">Engine Capacity</label>
+                    <select id="engine-capacity">
+                        <option value="">Select Capacity</option>
+                        <option value="1.0">1.0L</option>
+                        <option value="1.2">1.2L</option>
+                        <option value="1.4">1.4L</option>
+                        <option value="1.6">1.6L</option>
+                        <option value="1.8">1.8L</option>
+                        <option value="2.0">2.0L</option>
+                        <option value="2.2">2.2L</option>
+                        <option value="2.5">2.5L</option>
+                        <option value="3.0">3.0L</option>
+                        <option value="3.5">3.5L</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="part-search">Part Number/Name</label>
+                    <input type="text" id="part-search" placeholder="Enter part number or name...">
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="search-btn" onclick="searchParts()">🔍 Search Parts</button>
+            </div>
+        </div>
+
+        <div class="results-container" id="results-container" style="display: none;">
+            <div class="results-header">
+                <h2 class="results-title">Search Results</h2>
+                <div class="results-count" id="results-count">0 parts found</div>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterBy('all')">All Parts</button>
+                <button class="filter-btn" onclick="filterBy('engine')">Engine Parts</button>
+                <button class="filter-btn" onclick="filterBy('brake')">Brake System</button>
+                <button class="filter-btn" onclick="filterBy('suspension')">Suspension</button>
+                <button class="filter-btn" onclick="filterBy('electrical')">Electrical</button>
+                <button class="filter-btn" onclick="filterBy('body')">Body Parts</button>
+            </div>
+
+            <div class="parts-grid" id="parts-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Car models data
+        const carModels = {
+            toyota: ['Yaris', 'Corolla', 'Camry', 'RAV4', 'Prius', 'Avensis', 'Auris', 'C-HR'],
+            citroen: ['C1', 'C3', 'C4', 'C5', 'C6', 'Berlingo', 'Picasso', 'DS3', 'DS4', 'DS5'],
+            peugeot: ['106', '206', '207', '208', '306', '307', '308', '406', '407', '408', '508', 'Expert', 'Partner', '3008', '5008'],
+            renault: ['Clio', 'Megane', 'Scenic', 'Laguna', 'Espace', 'Captur', 'Kadjar', 'Talisman'],
+            volkswagen: ['Golf', 'Polo', 'Passat', 'Tiguan', 'Touran', 'Sharan', 'Jetta', 'Arteon'],
+            bmw: ['Series 1', 'Series 3', 'Series 5', 'Series 7', 'X1', 'X3', 'X5', 'X6'],
+            mercedes: ['A-Class', 'B-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE'],
+            audi: ['A1', 'A3', 'A4', 'A6', 'A8', 'Q2', 'Q3', 'Q5', 'Q7'],
+            ford: ['Fiesta', 'Focus', 'Mondeo', 'Kuga', 'Edge', 'Galaxy', 'S-Max'],
+            opel: ['Corsa', 'Astra', 'Insignia', 'Mokka', 'Crossland', 'Grandland']
+        };
+
+        // Sample parts data
+        const sampleParts = [
+            {
+                name: 'Brake Pads Front Set',
+                reference: 'BP-2021-FR',
+                category: 'Brake System',
+                suppliers: [
+                    { name: 'AutoParts Pro', price: 45.99, delivery: '2-3 days', rating: 4.8, bestPrice: true },
+                    { name: 'Car Components', price: 52.50, delivery: '1-2 days', rating: 4.6 },
+                    { name: 'Parts Direct', price: 48.90, delivery: '3-4 days', rating: 4.7 },
+                    { name: 'Motor Supply', price: 55.00, delivery: '2-3 days', rating: 4.5 }
+                ]
+            },
+            {
+                name: 'Oil Filter',
+                reference: 'OF-1520-STD',
+                category: 'Engine Parts',
+                suppliers: [
+                    { name: 'Filter Express', price: 12.99, delivery: '1-2 days', rating: 4.9, bestPrice: true },
+                    { name: 'Engine Parts Co', price: 15.50, delivery: '2-3 days', rating: 4.7 },
+                    { name: 'Auto Supply', price: 14.25, delivery: '3-4 days', rating: 4.6 }
+                ]
+            },
+            {
+                name: 'Spark Plugs Set (4pcs)',
+                reference: 'SP-NGK-4PCS',
+                category: 'Engine Parts',
+                suppliers: [
+                    { name: 'Ignition Specialists', price: 28.99, delivery: '1-2 days', rating: 4.8 },
+                    { name: 'Performance Parts', price: 26.50, delivery: '2-3 days', rating: 4.9, bestPrice: true },
+                    { name: 'Motor World', price: 31.00, delivery: '1-2 days', rating: 4.6 },
+                    { name: 'Parts Hub', price: 29.75, delivery: '3-4 days', rating: 4.7 }
+                ]
+            },
+            {
+                name: 'Shock Absorber Rear',
+                reference: 'SA-R-2020',
+                category: 'Suspension',
+                suppliers: [
+                    { name: 'Suspension Pro', price: 85.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
+                    { name: 'Comfort Ride', price: 92.50, delivery: '1-2 days', rating: 4.8 },
+                    { name: 'Auto Dynamics', price: 89.00, delivery: '3-4 days', rating: 4.6 }
+                ]
+            },
+            {
+                name: 'Headlight Assembly Left',
+                reference: 'HL-L-2019',
+                category: 'Electrical',
+                suppliers: [
+                    { name: 'Lighting Solutions', price: 165.99, delivery: '2-3 days', rating: 4.6 },
+                    { name: 'Vision Parts', price: 158.50, delivery: '3-4 days', rating: 4.8, bestPrice: true },
+                    { name: 'Illumination Co', price: 172.00, delivery: '1-2 days', rating: 4.7 }
+                ]
+            },
+            {
+                name: 'Side Mirror Right',
+                reference: 'SM-R-ELEC',
+                category: 'Body Parts',
+                suppliers: [
+                    { name: 'Mirror Masters', price: 78.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
+                    { name: 'Body Shop Supply', price: 85.50, delivery: '1-2 days', rating: 4.6 },
+                    { name: 'Exterior Parts', price: 82.25, delivery: '3-4 days', rating: 4.8 }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchResults = [];
+
+        // Update model dropdown based on selected brand
+        document.getElementById('brand').addEventListener('change', function() {
+            const brand = this.value;
+            const modelSelect = document.getElementById('model');
+            
+            modelSelect.innerHTML = '<option value="">Select Model</option>';
+            
+            if (brand && carModels[brand]) {
+                carModels[brand].forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model.toLowerCase();
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+            }
+        });
+
+        function searchParts() {
+            const brand = document.getElementById('brand').value;
+            const model = document.getElementById('model').value;
+            const engineType = document.getElementById('engine-type').value;
+            const engineCapacity = document.getElementById('engine-capacity').value;
+            const partSearch = document.getElementById('part-search').value;
+
+            if (!brand && !model && !partSearch) {
+                alert('Please select at least a brand, model, or enter a part name/number to search.');
+                return;
+            }
+
+            // Show loading
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.style.display = 'block';
+            resultsContainer.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Searching for parts...</p>
+                </div>
+            `;
+
+            // Simulate search delay
+            setTimeout(() => {
+                searchResults = sampleParts.filter(part => {
+                    if (partSearch) {
+                        return part.name.toLowerCase().includes(partSearch.toLowerCase()) ||
+                               part.reference.toLowerCase().includes(partSearch.toLowerCase());
+                    }
+                    return true;
+                });
+
+                displayResults();
+            }, 1500);
+        }
+
+        function displayResults() {
+            const resultsContainer = document.getElementById('results-container');
+            
+            if (searchResults.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No parts found</h3>
+                        <p>Try adjusting your search criteria or browse our categories.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const filteredResults = currentFilter === 'all' 
+                ? searchResults 
+                : searchResults.filter(part => 
+                    part.category.toLowerCase().includes(currentFilter)
+                );
+
+            resultsContainer.innerHTML = `
+                <div class="results-header">
+                    <h2 class="results-title">Search Results</h2>
+                    <div class="results-count">${filteredResults.length} parts found</div>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="filterBy('all')">All Parts</button>
+                    <button class="filter-btn ${currentFilter === 'engine' ? 'active' : ''}" onclick="filterBy('engine')">Engine Parts</button>
+                    <button class="filter-btn ${currentFilter === 'brake' ? 'active' : ''}" onclick="filterBy('brake')">Brake System</button>
+                    <button class="filter-btn ${currentFilter === 'suspension' ? 'active' : ''}" onclick="filterBy('suspension')">Suspension</button>
+                    <button class="filter-btn ${currentFilter === 'electrical' ? 'active' : ''}" onclick="filterBy('electrical')">Electrical</button>
+                    <button class="filter-btn ${currentFilter === 'body' ? 'active' : ''}" onclick="filterBy('body')">Body Parts</button>
+                </div>
+
+                <div class="parts-grid">
+                    ${filteredResults.map(part => `
+                        <div class="part-card">
+                            <div class="part-header">
+                                <div>
+                                    <div class="part-name">${part.name}</div>
+                                    <div class="part-reference">Ref: ${part.reference}</div>
+                                </div>
+                                <div class="part-category">${part.category}</div>
+                            </div>
+                            <div class="suppliers-grid">
+                                ${part.suppliers.map(supplier => `
+                                    <div class="supplier-card ${supplier.bestPrice ? 'best-price' : ''}">
+                                        <div class="supplier-name">${supplier.name}</div>
+                                        <div class="supplier-price">€${supplier.price}</div>
+                                        <div class="supplier-delivery">${supplier.delivery}</div>
+                                        <div class="supplier-rating">
+                                            <span class="stars">${'★'.repeat(Math.floor(supplier.rating))}${'☆'.repeat(5-Math.floor(supplier.rating))}</span>
+                                            <span>${supplier.rating}</span>
+                                        </div>
+                                        <button class="order-btn" onclick="orderPart('${supplier.name}', '${part.name}')">Order Now</button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function filterBy(category) {
+            currentFilter = category;
+            displayResults();
+        }
+
+        function orderPart(supplier, partName) {
+            alert(`Redirecting to ${supplier} to order: ${partName}`);
+        }
+
+        // Initialize with some sample results for demonstration
+        window.addEventListener('load', function() {
+            // You can uncomment this to show sample results on load
+            // searchResults = sampleParts;
+            // document.getElementById('results-container').style.display = 'block';
+            // displayResults();
+        });
+    </script>
+</body>
+</html>
