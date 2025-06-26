@@ -351,21 +351,314 @@
             border-color: #667eea;
         }
 
+        /* New styles for vehicle selection panel */
+        .vehicle-selection-container {
+            margin-bottom: 30px;
+        }
+
+        .vehicle-selection {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section__header--highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .vehicle-selection__inner {
+            padding: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .catalog__container {
+            flex: 1 1 50%; /* Take half width on larger screens */
+            min-width: 300px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #fdfdff;
+        }
+
+        .catalog__legend, .license .legend {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .catalog {
+            display: grid;
+            gap: 15px;
+        }
+
+        .catalog__select select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .license {
+            flex: 1 1 40%; /* Take slightly less than half */
+            min-width: 280px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #fdfdff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .license .input {
+            display: flex;
+            align-items: center;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 15px;
+        }
+
+        .license .input img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .license .input br {
+            display: none; /* Hide the <br> for better alignment */
+        }
+
+        .license .input span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-right: 5px;
+        }
+
+        .license .input input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            font-size: 1.1rem;
+            padding: 0;
+            background: transparent;
+        }
+
+        .license .submit .button {
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .license .submit .button:hover {
+            background: #38a169;
+        }
+
+        /* New Filter Component Styles */
+        .filter {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .filter .section__header--highlight {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: left;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .filter__list {
+            list-style: none;
+            padding: 20px;
+        }
+
+        /* Styles for individual filter items (Marque, Qualité) */
+        .filter__item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            list-style: none; /* Ensure no default list styling on li */
+            display: flex; /* Added for flex layout */
+            justify-content: space-between; /* Space out children */
+            align-items: center; /* Vertically align children */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 15px; /* Space between filter section and sort button */
+        }
+
+        .filter__item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Styles for each filter section (e.g., Marque or Qualité box) */
+        .filter__section {
+            padding: 15px 20px; /* Padding inside each filter section */
+            background: white; /* Background for the section box */
+            border-radius: 15px; /* Rounded corners for the section box */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Subtle shadow */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            flex-grow: 1; /* Allow filter section to grow */
+        }
+
+        .filter__section .filter__title {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* New class for horizontal scrolling list within Marque filter */
+        .filter__attributes--horizontal-scroll {
+            display: flex; /* Arrange list items (brands) in a row */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            gap: 10px; /* Space between brand items */
+            padding-bottom: 10px; /* Space for scrollbar */
+            list-style: none; /* Remove bullet points */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #a0aec0 #edf2f7; /* Firefox */
+        }
+
+        /* Style the individual filter attributes (brands) for horizontal display */
+        .filter__attributes--horizontal-scroll .filter__attribute {
+            flex-shrink: 0; /* Prevent brands from shrinking */
+            margin-bottom: 0; /* Override any default vertical margins */
+            /* Individual styling for the brand boxes */
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            background: #f7fafc;
+            transition: all 0.2s ease;
+        }
+
+        .filter__attributes--horizontal-scroll .filter__attribute:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Style the label inside horizontal attributes to prevent wrapping */
+        .filter__attributes--horizontal-scroll .filter__attribute label {
+            white-space: nowrap;
+            display: flex; /* To align checkbox and image */
+            align-items: center;
+        }
+
+        /* Default list styling for quality filter (vertical) */
+        .filter__section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .filter__attribute { /* Apply to all filter attributes, then override for horizontal */
+            margin-bottom: 8px;
+        }
+
+        .filter__attribute label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        .filter__attribute input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .filter__attribute picture img {
+            width: 82px;
+            height: 39px;
+            object-fit: contain;
+            margin-left: 10px;
+        }
+
+        /* Styles for the new sort button */
+        .sort-button {
+            cursor: pointer;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px; /* Ensure a decent width */
+            text-align: center;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .sort-button:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .sort-button-inner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-button-inner span {
+            font-size: 1rem;
+        }
+
+        .sort-button-inner.up::before {
+            content: '▲'; /* Up arrow for ascending */
+            font-size: 0.8em;
+            color: #48bb78; /* Green for ascending */
+        }
+
+        .sort-button-inner.down::before {
+            content: '▼'; /* Down arrow for descending */
+            font-size: 0.8em;
+            color: #e53e3e; /* Red for descending */
+        }
+
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .vehicle-selection__inner {
+                flex-direction: column;
             }
-            
-            .header h1 {
-                font-size: 2rem;
+            .catalog__container, .license {
+                min-width: unset; /* Allow full width */
+                width: 100%;
             }
-            
-            .search-grid {
-                grid-template-columns: 1fr;
+            .filter__item {
+                flex-direction: column;
+                align-items: stretch;
             }
-            
-            .suppliers-grid {
-                grid-template-columns: 1fr;
+            .sort-button {
+                width: 100%; /* Full width on small screens */
             }
         }
     </style>
@@ -378,47 +671,70 @@
         </div>
 
         <div class="search-panel">
-            <div class="form-group" style="margin-bottom: 20px;" >
-                <label for="part-search">Part Number/Ref/Name</label>
-                <input type="text" id="part-search" placeholder="Enter part number or name...">
+            <div data-cy="component-vehicle-selection-container" class="vehicle-selection-container has-neighbour">
+                <section data-cy="component-vehicle-selection-fr" class="vehicle-selection vehicle-selection__header section--highlight">
+                    <header class="section__header--highlight">
+                        Sélectionnez votre véhicule
+                    </header>
+                    <div class="vehicle-selection__inner section__main">
+                        <div data-cy="component-catalog" class="catalog__container">
+                            <p class="catalog__legend">Par le catalogue de véhicules</p>
+                            <div data-cy="vehicle-selection" class="catalog">
+                                <div class="catalog__select catalog__select--manufacturer">
+                                    <select data-cy="select-manufacturer" id="vehicle-brand" class="isHighlighted">
+                                        <option value="" disabled="disabled" hidden="hidden">
+                                            Choisissez une marque
+                                        </option>
+                                        <optgroup label="Constructeurs principaux">
+                                            </optgroup>
+                                        <optgroup label="Par ordre alphabétique">
+                                            </optgroup>
+                                    </select>
+                                </div>
+                                <div class="catalog__select catalog__select--series">
+                                    <select disabled="disabled" data-cy="select-series" id="vehicle-model" class="">
+                                        <option value="" disabled="disabled" hidden="hidden">
+                                            Choisissez un modèle
+                                        </option>
+                                        <optgroup label="Les modèles les plus recherchés"></optgroup>
+                                        <optgroup label="Tous les modèles"></optgroup>
+                                    </select>
+                                </div>
+                                <div class="catalog__select catalog__select--model">
+                                    <select disabled="disabled" data-cy="select-model" id="vehicle-motorisation" class="">
+                                        <option value="" disabled="disabled" hidden="hidden">
+                                            Choisissez une motorisation
+                                        </option>
+                                        <optgroup label="Motorisation les plus choisies"></optgroup>
+                                        <optgroup label="Toutes les motorisations"></optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <form data-cy="component-license-plate" class="license">
+                            <p class="legend">
+                                Par plaque d'immatriculation
+                            </p>
+                            <div class="input">
+                                <span><img src="/_nuxt/img/stars-of-europe.72a34e4.svg" alt="*"> <br>F </span>
+                                <input pattern="(^[a-zA-Z]{2}-?\d{3}-?[a-zA-Z]{2}$)|(^\d{1,4}-?[a-zA-Z]{1,3}-?\w{1,3}$)" placeholder="AA-123-ZZ" type="text" data-cy="input-license" id="license-plate-input" required="required">
+                                <span></span>
+                            </div>
+                            <div style="flex: 1"></div>
+                            <div class="submit">
+                                <button data-cy="button-submit" type="submit" class="button primary"><span class="desktop">Sélectionnez</span> <span class="mobile">Sélectionnez</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
             </div>
-            <div class="search-grid">
-                <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <select id="brand">
-                        <option value="">Select Brand</option>
-                        <option value="toyota">Toyota</option>
-                        <option value="citroen">Citroën</option>
-                        <option value="peugeot">Peugeot</option>
-                        <option value="renault">Renault</option>
-                        <option value="volkswagen">Volkswagen</option>
-                        <option value="bmw">BMW</option>
-                        <option value="mercedes">Mercedes-Benz</option>
-                        <option value="audi">Audi</option>
-                        <option value="ford">Ford</option>
-                        <option value="opel">Opel</option>
-                    </select>
-                </div>
 
+            <div class="search-grid" style="margin-top: 30px;">
                 <div class="form-group">
-                    <label for="model">Model</label>
-                    <select id="model">
-                        <option value="">Select Model</option>
-                    </select>
+                    <label for="part-search">Part Number/Ref/Name</label>
+                    <input type="text" id="part-search" placeholder="Enter part number or name...">
                 </div>
-
-                <div class="form-group">
-                    <label for="engine-type">Engine Type</label>
-                    <select id="engine-type">
-                        <option value="">Select Engine Type</option>
-                        <option value="petrol">Petrol</option>
-                        <option value="diesel">Diesel</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="electric">Electric</option>
-                        <option value="lpg">LPG</option>
-                    </select>
-                </div>
-
+                
                 <div class="form-group">
                     <label for="engine-capacity">Engine Capacity</label>
                     <select id="engine-capacity">
@@ -435,37 +751,7 @@
                         <option value="3.5">3.5L</option>
                     </select>
                 </div>
-
-                <div class="form-group">
-                    <label for="manufacturer">Manufacturer</label>
-                    <select id="manufacturer">
-                        <option value="">Select Manufacturer</option>
-                        <option value="bosch">Bosch</option>
-                        <option value="valeo">Valeo</option>
-                        <option value="brembo">Brembo</option>
-                        <option value="ngk">NGK</option>
-                        <option value="denso">Denso</option>
-                        <option value="continental">Continental</option>
-                        <option value="sachs">Sachs</option>
-                        <option value="mann">Mann Filter</option>
-                        <option value="mahle">Mahle</option>
-                        <option value="pierburg">Pierburg</option>
-                        <option value="ate">ATE</option>
-                        <option value="trw">TRW</option>
-                        <option value="febi">Febi Bilstein</option>
-                        <option value="lemforder">Lemförder</option>
-                        <option value="hella">Hella</option>
-                        <option value="osram">Osram</option>
-                        <option value="magneti">Magneti Marelli</option>
-                        <option value="gates">Gates</option>
-                        <option value="dayco">Dayco</option>
-                        <option value="skf">SKF</option>
-                    </select>
-                </div>
-
-                
             </div>
-
             <div style="text-align: center;">
                 <button class="search-btn" onclick="searchParts()">🔍 Search Parts</button>
             </div>
@@ -475,6 +761,80 @@
             <div class="results-header">
                 <h2 class="results-title">Search Results</h2>
                 <div class="results-count" id="results-count">0 parts found</div>
+            </div>
+
+            <div data-cy="component-filters" class="filter section--highlight">
+                <header class="section__header--highlight">Filter</header> 
+                <ul class="filter__list">
+                    <li class="filter__item">
+                        <div data-cy="filter-manufacturer" class="filter__section">
+                            <div class="filter__title">Marque</div> 
+                            <ul class="filter__attributes--horizontal-scroll">
+                                <li class="filter__attribute">
+                                    <label><input type="checkbox" value="Sachs"> 
+                                        <picture>
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_617.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_617.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=164_78 2x" type="image/webp"> 
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_617.png?fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_617.png?fit=contain&amp;b=white&amp;s=164_78 2x"> 
+                                            <img src="/_ipx/assets-web/assets/images/manufacturers/logo_617.png?fit=contain&amp;b=white&amp;s=82_39" width="82" height="39" alt="Sachs" title="Sachs" loading="eager">
+                                        </picture>
+                                    </label>
+                                </li>
+                                <li class="filter__attribute">
+                                    <label><input type="checkbox" value="Valeo"> 
+                                        <picture>
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_775.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_775.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=164_78 2x" type="image/webp"> 
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_775.png?fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_775.png?fit=contain&amp;b=white&amp;s=164_78 2x"> 
+                                            <img src="/_ipx/assets-web/assets/images/manufacturers/logo_775.png?fit=contain&amp;b=white&amp;s=82_39" width="82" height="39" alt="Valeo" title="Valeo" loading="eager">
+                                        </picture>
+                                    </label>
+                                </li>
+                                <li class="filter__attribute">
+                                    <label><input type="checkbox" value="Schaeffler LuK"> 
+                                        <picture>
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_1964.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_1964.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=164_78 2x" type="image/webp"> 
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_1964.png?fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_1964.png?fit=contain&amp;b=white&amp;s=164_78 2x"> 
+                                            <img src="/_ipx/assets-web/assets/images/manufacturers/logo_1964.png?fit=contain&amp;b=white&amp;s=82_39" width="82" height="39" alt="Schaeffler LuK" title="Schaeffler LuK" loading="eager">
+                                        </picture>
+                                    </label>
+                                </li>
+                                <li class="filter__attribute">
+                                    <label><input type="checkbox" value="Mapco"> 
+                                        <picture>
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_637.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_637.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=164_78 2x" type="image/webp"> 
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_637.png?fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_637.png?fit=contain&amp;b=white&amp;s=164_78 2x"> 
+                                            <img src="/_ipx/assets-web/assets/images/manufacturers/logo_637.png?fit=contain&amp;b=white&amp;s=82_39" width="82" height="39" alt="Mapco" title="Mapco" loading="eager">
+                                        </picture>
+                                    </label>
+                                </li>
+                                <li class="filter__attribute">
+                                    <label><input type="checkbox" value="KAMOKA"> 
+                                        <picture>
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_72201.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_72201.png?f=webp&amp;q=98&amp;fit=contain&amp;b=white&amp;s=164_78 2x" type="image/webp"> 
+                                            <source srcset="/_ipx/assets-web/assets/images/manufacturers/logo_72201.png?fit=contain&amp;b=white&amp;s=82_39 1x, /_ipx/assets-web/assets/images/manufacturers/logo_72201.png?fit=contain&amp;b=white&amp;s=164_78 2x"> 
+                                            <img src="/_ipx/assets-web/assets/images/manufacturers/logo_72201.png?fit=contain&amp;b=white&amp;s=82_39" width="82" height="39" alt="KAMOKA" title="KAMOKA" loading="eager">
+                                        </picture>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="filter__item">
+                        <div data-cy="filter-quality" class="filter__section">
+                            <label class="filter__title">Qualité</label> 
+                            <ul class="filter__attributes--horizontal-scroll">
+                                <li class="filter__attribute">
+                                    <label class="checkbox"><input type="checkbox" value="Premium"> Premium </label>
+                                </li> 
+                                <li class="filter__attribute">
+                                    <label class="checkbox"><input type="checkbox" value="Économique"> Économique </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div data-cy="button-sort-by-price" class="sort-button" onclick="sortPartsByPrice()">
+                            <div class="sort-button-inner up"><span>Prix croissants</span></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div class="filters">
@@ -512,6 +872,7 @@
                 reference: 'BP-2021-FR',
                 category: 'Brake System',
                 manufacturer: 'Brembo',
+                quality: 'Premium', // Added quality
                 suppliers: [
                     { name: 'AutoParts Pro', price: 45.99, delivery: '2-3 days', rating: 4.8, bestPrice: true },
                     { name: 'Car Components', price: 52.50, delivery: '1-2 days', rating: 4.6 },
@@ -524,6 +885,7 @@
                 reference: 'OF-1520-STD',
                 category: 'Engine Parts',
                 manufacturer: 'Mann Filter',
+                quality: 'Premium', // Added quality
                 suppliers: [
                     { name: 'Filter Express', price: 12.99, delivery: '1-2 days', rating: 4.9, bestPrice: true },
                     { name: 'Engine Parts Co', price: 15.50, delivery: '2-3 days', rating: 4.7 },
@@ -535,6 +897,7 @@
                 reference: 'SP-NGK-4PCS',
                 category: 'Engine Parts',
                 manufacturer: 'NGK',
+                quality: 'Premium', // Added quality
                 suppliers: [
                     { name: 'Ignition Specialists', price: 28.99, delivery: '1-2 days', rating: 4.8 },
                     { name: 'Performance Parts', price: 26.50, delivery: '2-3 days', rating: 4.9, bestPrice: true },
@@ -547,6 +910,7 @@
                 reference: 'SA-R-2020',
                 category: 'Suspension',
                 manufacturer: 'Sachs',
+                quality: 'Premium', // Added quality
                 suppliers: [
                     { name: 'Suspension Pro', price: 85.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
                     { name: 'Comfort Ride', price: 92.50, delivery: '1-2 days', rating: 4.8 },
@@ -558,6 +922,7 @@
                 reference: 'HL-L-2019',
                 category: 'Electrical',
                 manufacturer: 'Hella',
+                quality: 'Premium', // Added quality
                 suppliers: [
                     { name: 'Lighting Solutions', price: 165.99, delivery: '2-3 days', rating: 4.6 },
                     { name: 'Vision Parts', price: 158.50, delivery: '3-4 days', rating: 4.8, bestPrice: true },
@@ -569,194 +934,290 @@
                 reference: 'SM-R-ELEC',
                 category: 'Body Parts',
                 manufacturer: 'Magneti Marelli',
+                quality: 'Économique', // Added quality
                 suppliers: [
-                    { name: 'Mirror Masters', price: 78.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
-                    { name: 'Body Shop Supply', price: 85.50, delivery: '1-2 days', rating: 4.6 },
-                    { name: 'Exterior Parts', price: 82.25, delivery: '3-4 days', rating: 4.8 }
+                    { name: 'Mirror Masters', price: 78.99, delivery: '2-3 days', rating: 4.6 },
+                    { name: 'Mirror Solutions', price: 82.50, delivery: '1-2 days', rating: 4.5, bestPrice: true },
+                    { name: 'Car Body Parts', price: 75.00, delivery: '3-4 days', rating: 4.7 }
                 ]
             },
             {
-                name: 'Air Filter',
-                reference: 'AF-MAHLE-LX123',
+                name: 'Clutch Kit', // Corresponds to "Kit d'embrayage"
+                reference: 'CK-XYZ-123',
                 category: 'Engine Parts',
-                manufacturer: 'Mahle',
+                manufacturer: 'Sachs', // Matches one of the new manufacturers
+                quality: 'Premium',
                 suppliers: [
-                    { name: 'Filter World', price: 18.99, delivery: '1-2 days', rating: 4.8, bestPrice: true },
-                    { name: 'Air Supply Co', price: 22.50, delivery: '2-3 days', rating: 4.6 },
-                    { name: 'Engine Care', price: 20.75, delivery: '3-4 days', rating: 4.7 }
+                    { name: 'Clutch Pro', price: 250.00, delivery: '2-3 days', rating: 4.7, bestPrice: true },
+                    { name: 'Drivetrain Experts', price: 265.00, delivery: '1-2 days', rating: 4.6 }
                 ]
             },
             {
-                name: 'Brake Discs Front Pair',
-                reference: 'BD-ATE-24.0123',
+                name: 'Brake Disc Front',
+                reference: 'BD-FR-ABC',
                 category: 'Brake System',
-                manufacturer: 'ATE',
+                manufacturer: 'Valeo', // Matches one of the new manufacturers
+                quality: 'Premium',
                 suppliers: [
-                    { name: 'Brake Specialists', price: 125.99, delivery: '2-3 days', rating: 4.9 },
-                    { name: 'Disc Masters', price: 118.50, delivery: '3-4 days', rating: 4.7, bestPrice: true },
-                    { name: 'Brake World', price: 132.00, delivery: '1-2 days', rating: 4.8 }
+                    { name: 'Braking Solutions', price: 75.00, delivery: '1-2 days', rating: 4.8, bestPrice: true },
+                    { name: 'Stop Fast', price: 80.00, delivery: '2-3 days', rating: 4.7 }
                 ]
             },
             {
-                name: 'Timing Belt Kit',
-                reference: 'TB-GATES-K025',
-                category: 'Engine Parts',
-                manufacturer: 'Gates',
+                name: 'Suspension Arm',
+                reference: 'SA-L-XY',
+                category: 'Suspension',
+                manufacturer: 'Mapco', // Matches one of the new manufacturers
+                quality: 'Économique',
                 suppliers: [
-                    { name: 'Timing Solutions', price: 89.99, delivery: '2-3 days', rating: 4.8 },
-                    { name: 'Belt Express', price: 85.50, delivery: '1-2 days', rating: 4.9, bestPrice: true },
-                    { name: 'Engine Timing', price: 92.75, delivery: '3-4 days', rating: 4.6 }
-                ]
-            },
-            {
-                name: 'Xenon Bulb H7',
-                reference: 'XB-OSRAM-H7',
-                category: 'Electrical',
-                manufacturer: 'Osram',
-                suppliers: [
-                    { name: 'Lighting Pro', price: 35.99, delivery: '1-2 days', rating: 4.7 },
-                    { name: 'Bulb Depot', price: 32.50, delivery: '2-3 days', rating: 4.8, bestPrice: true },
-                    { name: 'Illumination Store', price: 38.00, delivery: '1-2 days', rating: 4.6 }
+                    { name: 'Ride Smooth', price: 55.00, delivery: '3-4 days', rating: 4.5, bestPrice: true },
+                    { name: 'Road Handling', price: 60.00, delivery: '2-3 days', rating: 4.4 }
                 ]
             }
         ];
 
-        let currentFilter = 'all';
         let searchResults = [];
+        let currentFilter = 'all';
+        let currentSortOrder = 'asc'; // 'asc' for ascending, 'desc' for descending
 
-        // Update model dropdown based on selected brand
-        document.getElementById('brand').addEventListener('change', function() {
-            const brand = this.value;
-            const modelSelect = document.getElementById('model');
-            
-            modelSelect.innerHTML = '<option value="">Select Model</option>';
-            
-            if (brand && carModels[brand]) {
-                carModels[brand].forEach(model => {
-                    const option = document.createElement('option');
-                    option.value = model.toLowerCase();
-                    option.textContent = model;
-                    modelSelect.appendChild(option);
-                });
+        // Update brandSelect and modelSelect to new IDs
+        const brandSelect = document.getElementById('vehicle-brand');
+        const modelSelect = document.getElementById('vehicle-model');
+        const motorisationSelect = document.getElementById('vehicle-motorisation'); // New select for engine type
+
+
+        brandSelect.addEventListener('change', function() {
+            const selectedBrand = this.value;
+            modelSelect.innerHTML = '<option value="">Choisissez un modèle</option>';
+            modelSelect.disabled = true;
+            motorisationSelect.innerHTML = '<option value="">Choisissez une motorisation</option>';
+            motorisationSelect.disabled = true;
+
+            if (selectedBrand) {
+                const models = carModels[selectedBrand];
+                if (models) {
+                    modelSelect.disabled = false;
+                    const defaultOptionGroup = document.createElement('optgroup');
+                    defaultOptionGroup.label = "Tous les modèles";
+                    models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.toLowerCase();
+                        option.textContent = model;
+                        defaultOptionGroup.appendChild(option);
+                    });
+                    modelSelect.appendChild(defaultOptionGroup);
+                }
             }
         });
 
-        function searchParts() {
-            const brand = document.getElementById('brand').value;
-            const model = document.getElementById('model').value;
-            const engineType = document.getElementById('engine-type').value;
-            const engineCapacity = document.getElementById('engine-capacity').value;
-            const manufacturer = document.getElementById('manufacturer').value;
-            const partSearch = document.getElementById('part-search').value;
+        // Add event listener for modelSelect to enable motorisationSelect (Engine Type)
+        modelSelect.addEventListener('change', function() {
+            const selectedModel = this.value;
+            motorisationSelect.innerHTML = '<option value="">Choisissez une motorisation</option>';
+            motorisationSelect.disabled = true;
 
-            if (!brand && !model && !manufacturer && !partSearch) {
-                alert('Please select at least a brand, model, manufacturer, or enter a part name/number to search.');
+            if (selectedModel) {
+                motorisationSelect.disabled = false;
+                // For demonstration, let's just add common engine types.
+                // In a real application, you'd fetch engine types based on brand and model.
+                const commonEngineTypes = ['Petrol', 'Diesel', 'Hybrid', 'Electric', 'LPG'];
+                const defaultOptionGroup = document.createElement('optgroup');
+                defaultOptionGroup.label = "Toutes les motorisations";
+                commonEngineTypes.forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type.toLowerCase();
+                    option.textContent = type;
+                    defaultOptionGroup.appendChild(option);
+                });
+                motorisationSelect.appendChild(defaultOptionGroup);
+            }
+        });
+
+        // Function to populate initial car brands
+        function populateCarBrands() {
+            const mainManufacturersOptgroup = brandSelect.querySelector('optgroup[label="Constructeurs principaux"]');
+            const alphabeticalManufacturersOptgroup = brandSelect.querySelector('optgroup[label="Par ordre alphabétique"]');
+
+            // Clear existing options (if any hardcoded or previously populated)
+            mainManufacturersOptgroup.innerHTML = '';
+            alphabeticalManufacturersOptgroup.innerHTML = '';
+
+            const allBrands = Object.keys(carModels).sort(); // Sort all brands alphabetically
+
+            // Example of populating "Constructeurs principaux" - you can customize this list
+            const principalManufacturers = ['renault', 'peugeot', 'citroen', 'volkswagen', 'mercedes', 'opel', 'bmw', 'audi', 'ford', 'fiat'];
+            
+            principalManufacturers.forEach(brandKey => {
+                if (carModels[brandKey]) {
+                    const option = document.createElement('option');
+                    option.value = brandKey;
+                    option.textContent = brandKey.toUpperCase();
+                    mainManufacturersOptgroup.appendChild(option);
+                }
+            });
+
+            allBrands.forEach(brandKey => {
+                // Avoid duplicating brands already in "Constructeurs principaux"
+                if (!principalManufacturers.includes(brandKey)) {
+                    const option = document.createElement('option');
+                    option.value = brandKey;
+                    option.textContent = brandKey.toUpperCase();
+                    alphabeticalManufacturersOptgroup.appendChild(option);
+                }
+            });
+        }
+        
+        // Call populateCarBrands on load
+        window.addEventListener('load', populateCarBrands);
+
+
+        async function searchParts() {
+            const vehicleBrand = document.getElementById('vehicle-brand').value;
+            const vehicleModel = document.getElementById('vehicle-model').value;
+            const vehicleMotorisation = document.getElementById('vehicle-motorisation').value;
+            const licensePlate = document.getElementById('license-plate-input').value;
+            
+            const partSearch = document.getElementById('part-search').value;
+            const engineCapacity = document.getElementById('engine-capacity').value;
+
+            if (!vehicleBrand && !licensePlate && !partSearch) {
+                alert('Please select a vehicle, enter a license plate, or enter a part name/number to search.');
                 return;
             }
 
-            // Show loading
             const resultsContainer = document.getElementById('results-container');
+            const partsGrid = document.getElementById('parts-grid');
+            const resultsCount = document.getElementById('results-count');
+
             resultsContainer.style.display = 'block';
-            resultsContainer.innerHTML = `
+            resultsCount.textContent = 'Searching...';
+            partsGrid.innerHTML = `
                 <div class="loading">
                     <div class="spinner"></div>
                     <p>Searching for parts...</p>
                 </div>
             `;
 
-            // Simulate search delay
-            setTimeout(() => {
+            try {
+                const searchCriteria = {
+                    vehicleBrand,
+                    vehicleModel,
+                    vehicleMotorisation,
+                    licensePlate,
+                    partSearch,
+                    engineCapacity
+                };
+
                 searchResults = sampleParts.filter(part => {
-                    let matches = true;
-                    
-                    if (manufacturer && part.manufacturer.toLowerCase() !== manufacturer.toLowerCase()) {
-                        matches = false;
-                    }
-                    
-                    if (partSearch) {
-                        const searchLower = partSearch.toLowerCase();
-                        const nameMatch = part.name.toLowerCase().includes(searchLower);
-                        const refMatch = part.reference.toLowerCase().includes(searchLower);
-                        const mfgMatch = part.manufacturer.toLowerCase().includes(searchLower);
-                        
-                        if (!nameMatch && !refMatch && !mfgMatch) {
-                            matches = false;
-                        }
-                    }
-                    
-                    return matches;
+                    const partNameMatches = partSearch ? part.name.toLowerCase().includes(partSearch.toLowerCase()) || part.reference.toLowerCase().includes(partSearch.toLowerCase()) : true;
+                    return partNameMatches;
                 });
 
                 displayResults();
-            }, 1500);
+
+            } catch (error) {
+                console.error("Error during search:", error);
+                partsGrid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">⚠️</div>
+                        <h3>Error during search</h3>
+                        <p>Could not fetch parts. Please try again later.</p>
+                    </div>
+                `;
+                resultsCount.textContent = 'Error';
+            }
+        }
+
+        function sortPartsByPrice() {
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+            const sortButtonInner = document.querySelector('.sort-button-inner');
+            if (sortButtonInner) { // Check if element exists before manipulating
+                if (currentSortOrder === 'asc') {
+                    sortButtonInner.classList.remove('down');
+                    sortButtonInner.classList.add('up');
+                    sortButtonInner.querySelector('span').textContent = 'Prix croissants';
+                } else {
+                    sortButtonInner.classList.remove('up');
+                    sortButtonInner.classList.add('down');
+                    sortButtonInner.querySelector('span').textContent = 'Prix décroissants';
+                }
+            }
+            displayResults(); // Re-display results after sorting
         }
 
         function displayResults() {
-            const resultsContainer = document.getElementById('results-container');
+            const partsGrid = document.getElementById('parts-grid');
+            const resultsCount = document.getElementById('results-count');
+            partsGrid.innerHTML = ''; // Clear previous results
+
+            let partsToDisplay = [...searchResults]; // Create a copy to sort
+
+            // Apply sorting based on currentSortOrder
+            if (currentSortOrder === 'asc') {
+                partsToDisplay.sort((a, b) => {
+                    const priceA = a.suppliers.length > 0 ? Math.min(...a.suppliers.map(s => s.price)) : Infinity;
+                    const priceB = b.suppliers.length > 0 ? Math.min(...b.suppliers.map(s => s.price)) : Infinity;
+                    return priceA - priceB;
+                });
+            } else {
+                partsToDisplay.sort((a, b) => {
+                    const priceA = a.suppliers.length > 0 ? Math.min(...a.suppliers.map(s => s.price)) : Infinity;
+                    const priceB = b.suppliers.length > 0 ? Math.min(...b.suppliers.map(s => s.price)) : Infinity;
+                    return priceB - priceA;
+                });
+            }
+
+            const filteredParts = currentFilter === 'all' ? partsToDisplay : partsToDisplay.filter(part => part.category.toLowerCase().includes(currentFilter));
             
-            if (searchResults.length === 0) {
-                resultsContainer.innerHTML = `
+            resultsCount.textContent = `${filteredParts.length} parts found`;
+
+            if (filteredParts.length === 0) {
+                partsGrid.innerHTML = `
                     <div class="no-results">
-                        <div class="no-results-icon">🔍</div>
+                        <div class="no-results-icon">😔</div>
                         <h3>No parts found</h3>
-                        <p>Try adjusting your search criteria or browse our categories.</p>
+                        <p>Try adjusting your search criteria or checking for typos.</p>
                     </div>
                 `;
                 return;
             }
 
-            const filteredResults = currentFilter === 'all' 
-                ? searchResults 
-                : searchResults.filter(part => 
-                    part.category.toLowerCase().includes(currentFilter)
-                );
-
-            resultsContainer.innerHTML = `
-                <div class="results-header">
-                    <h2 class="results-title">Search Results</h2>
-                    <div class="results-count">${filteredResults.length} parts found</div>
-                </div>
-
-                <div class="filters">
-                    <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="filterBy('all')">All Parts</button>
-                    <button class="filter-btn ${currentFilter === 'engine' ? 'active' : ''}" onclick="filterBy('engine')">Engine Parts</button>
-                    <button class="filter-btn ${currentFilter === 'brake' ? 'active' : ''}" onclick="filterBy('brake')">Brake System</button>
-                    <button class="filter-btn ${currentFilter === 'suspension' ? 'active' : ''}" onclick="filterBy('suspension')">Suspension</button>
-                    <button class="filter-btn ${currentFilter === 'electrical' ? 'active' : ''}" onclick="filterBy('electrical')">Electrical</button>
-                    <button class="filter-btn ${currentFilter === 'body' ? 'active' : ''}" onclick="filterBy('body')">Body Parts</button>
-                </div>
-
-                <div class="parts-grid">
-                    ${filteredResults.map(part => `
-                        <div class="part-card">
-                            <div class="part-header">
-                                <div>
-                                    <div class="part-name">${part.name}</div>
-                                    <div class="part-reference">Ref: ${part.reference} | ${part.manufacturer}</div>
-                                </div>
-                                <div class="part-category">${part.category}</div>
-                            </div>
-                            <div class="suppliers-grid">
-                                ${part.suppliers.map(supplier => `
-                                    <div class="supplier-card ${supplier.bestPrice ? 'best-price' : ''}">
-                                        <div class="supplier-name">${supplier.name}</div>
-                                        <div class="supplier-price">€${supplier.price}</div>
-                                        <div class="supplier-delivery">${supplier.delivery}</div>
-                                        <div class="supplier-rating">
-                                            <span class="stars">${'★'.repeat(Math.floor(supplier.rating))}${'☆'.repeat(5-Math.floor(supplier.rating))}</span>
-                                            <span>${supplier.rating}</span>
-                                        </div>
-                                        <button class="order-btn" onclick="orderPart('${supplier.name}', '${part.name}')">Order Now</button>
-                                    </div>
-                                `).join('')}
-                            </div>
+            filteredParts.forEach(part => {
+                const partCard = document.createElement('div');
+                partCard.className = 'part-card';
+                partCard.innerHTML = `
+                    <div class="part-header">
+                        <div>
+                            <div class="part-name">${part.name}</div>
+                            <div class="part-reference">Ref: ${part.reference}</div>
                         </div>
-                    `).join('')}
-                </div>
-            `;
+                        <div class="part-category">${part.category}</div>
+                    </div>
+                    <div class="suppliers-grid">
+                        ${part.suppliers.map(supplier => `
+                            <div class="supplier-card ${supplier.bestPrice ? 'best-price' : ''}">
+                                <div class="supplier-name">${supplier.name}</div>
+                                <div class="supplier-price">€${supplier.price.toFixed(2)}</div>
+                                <div class="supplier-delivery">${supplier.delivery}</div>
+                                <div class="supplier-rating}>
+                                    <span class="stars">${'★'.repeat(Math.floor(supplier.rating))}${'☆'.repeat(5-Math.floor(supplier.rating))}</span>
+                                    <span>${supplier.rating}</span>
+                                </div>
+                                <button class="order-btn" onclick="orderPart('${supplier.name}', '${part.name}')">Order Now</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                partsGrid.appendChild(partCard);
+            });
         }
 
         function filterBy(category) {
+            // Remove 'active' class from all buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Add 'active' class to the clicked button
+            document.querySelector(`.filter-btn[onclick="filterBy('${category}')"]`).classList.add('active');
+
             currentFilter = category;
             displayResults();
         }
