@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +53,7 @@
 
         .search-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-bottom: 25px;
         }
@@ -434,6 +433,33 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="manufacturer">Manufacturer</label>
+                    <select id="manufacturer">
+                        <option value="">Select Manufacturer</option>
+                        <option value="bosch">Bosch</option>
+                        <option value="valeo">Valeo</option>
+                        <option value="brembo">Brembo</option>
+                        <option value="ngk">NGK</option>
+                        <option value="denso">Denso</option>
+                        <option value="continental">Continental</option>
+                        <option value="sachs">Sachs</option>
+                        <option value="mann">Mann Filter</option>
+                        <option value="mahle">Mahle</option>
+                        <option value="pierburg">Pierburg</option>
+                        <option value="ate">ATE</option>
+                        <option value="trw">TRW</option>
+                        <option value="febi">Febi Bilstein</option>
+                        <option value="lemforder">Lemförder</option>
+                        <option value="hella">Hella</option>
+                        <option value="osram">Osram</option>
+                        <option value="magneti">Magneti Marelli</option>
+                        <option value="gates">Gates</option>
+                        <option value="dayco">Dayco</option>
+                        <option value="skf">SKF</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="part-search">Part Number/Name</label>
                     <input type="text" id="part-search" placeholder="Enter part number or name...">
                 </div>
@@ -484,6 +510,7 @@
                 name: 'Brake Pads Front Set',
                 reference: 'BP-2021-FR',
                 category: 'Brake System',
+                manufacturer: 'Brembo',
                 suppliers: [
                     { name: 'AutoParts Pro', price: 45.99, delivery: '2-3 days', rating: 4.8, bestPrice: true },
                     { name: 'Car Components', price: 52.50, delivery: '1-2 days', rating: 4.6 },
@@ -495,6 +522,7 @@
                 name: 'Oil Filter',
                 reference: 'OF-1520-STD',
                 category: 'Engine Parts',
+                manufacturer: 'Mann Filter',
                 suppliers: [
                     { name: 'Filter Express', price: 12.99, delivery: '1-2 days', rating: 4.9, bestPrice: true },
                     { name: 'Engine Parts Co', price: 15.50, delivery: '2-3 days', rating: 4.7 },
@@ -505,6 +533,7 @@
                 name: 'Spark Plugs Set (4pcs)',
                 reference: 'SP-NGK-4PCS',
                 category: 'Engine Parts',
+                manufacturer: 'NGK',
                 suppliers: [
                     { name: 'Ignition Specialists', price: 28.99, delivery: '1-2 days', rating: 4.8 },
                     { name: 'Performance Parts', price: 26.50, delivery: '2-3 days', rating: 4.9, bestPrice: true },
@@ -516,6 +545,7 @@
                 name: 'Shock Absorber Rear',
                 reference: 'SA-R-2020',
                 category: 'Suspension',
+                manufacturer: 'Sachs',
                 suppliers: [
                     { name: 'Suspension Pro', price: 85.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
                     { name: 'Comfort Ride', price: 92.50, delivery: '1-2 days', rating: 4.8 },
@@ -526,6 +556,7 @@
                 name: 'Headlight Assembly Left',
                 reference: 'HL-L-2019',
                 category: 'Electrical',
+                manufacturer: 'Hella',
                 suppliers: [
                     { name: 'Lighting Solutions', price: 165.99, delivery: '2-3 days', rating: 4.6 },
                     { name: 'Vision Parts', price: 158.50, delivery: '3-4 days', rating: 4.8, bestPrice: true },
@@ -536,10 +567,55 @@
                 name: 'Side Mirror Right',
                 reference: 'SM-R-ELEC',
                 category: 'Body Parts',
+                manufacturer: 'Magneti Marelli',
                 suppliers: [
                     { name: 'Mirror Masters', price: 78.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
                     { name: 'Body Shop Supply', price: 85.50, delivery: '1-2 days', rating: 4.6 },
                     { name: 'Exterior Parts', price: 82.25, delivery: '3-4 days', rating: 4.8 }
+                ]
+            },
+            {
+                name: 'Air Filter',
+                reference: 'AF-MAHLE-LX123',
+                category: 'Engine Parts',
+                manufacturer: 'Mahle',
+                suppliers: [
+                    { name: 'Filter World', price: 18.99, delivery: '1-2 days', rating: 4.8, bestPrice: true },
+                    { name: 'Air Supply Co', price: 22.50, delivery: '2-3 days', rating: 4.6 },
+                    { name: 'Engine Care', price: 20.75, delivery: '3-4 days', rating: 4.7 }
+                ]
+            },
+            {
+                name: 'Brake Discs Front Pair',
+                reference: 'BD-ATE-24.0123',
+                category: 'Brake System',
+                manufacturer: 'ATE',
+                suppliers: [
+                    { name: 'Brake Specialists', price: 125.99, delivery: '2-3 days', rating: 4.9 },
+                    { name: 'Disc Masters', price: 118.50, delivery: '3-4 days', rating: 4.7, bestPrice: true },
+                    { name: 'Brake World', price: 132.00, delivery: '1-2 days', rating: 4.8 }
+                ]
+            },
+            {
+                name: 'Timing Belt Kit',
+                reference: 'TB-GATES-K025',
+                category: 'Engine Parts',
+                manufacturer: 'Gates',
+                suppliers: [
+                    { name: 'Timing Solutions', price: 89.99, delivery: '2-3 days', rating: 4.8 },
+                    { name: 'Belt Express', price: 85.50, delivery: '1-2 days', rating: 4.9, bestPrice: true },
+                    { name: 'Engine Timing', price: 92.75, delivery: '3-4 days', rating: 4.6 }
+                ]
+            },
+            {
+                name: 'Xenon Bulb H7',
+                reference: 'XB-OSRAM-H7',
+                category: 'Electrical',
+                manufacturer: 'Osram',
+                suppliers: [
+                    { name: 'Lighting Pro', price: 35.99, delivery: '1-2 days', rating: 4.7 },
+                    { name: 'Bulb Depot', price: 32.50, delivery: '2-3 days', rating: 4.8, bestPrice: true },
+                    { name: 'Illumination Store', price: 38.00, delivery: '1-2 days', rating: 4.6 }
                 ]
             }
         ];
@@ -569,10 +645,11 @@
             const model = document.getElementById('model').value;
             const engineType = document.getElementById('engine-type').value;
             const engineCapacity = document.getElementById('engine-capacity').value;
+            const manufacturer = document.getElementById('manufacturer').value;
             const partSearch = document.getElementById('part-search').value;
 
-            if (!brand && !model && !partSearch) {
-                alert('Please select at least a brand, model, or enter a part name/number to search.');
+            if (!brand && !model && !manufacturer && !partSearch) {
+                alert('Please select at least a brand, model, manufacturer, or enter a part name/number to search.');
                 return;
             }
 
@@ -589,11 +666,24 @@
             // Simulate search delay
             setTimeout(() => {
                 searchResults = sampleParts.filter(part => {
-                    if (partSearch) {
-                        return part.name.toLowerCase().includes(partSearch.toLowerCase()) ||
-                               part.reference.toLowerCase().includes(partSearch.toLowerCase());
+                    let matches = true;
+                    
+                    if (manufacturer && part.manufacturer.toLowerCase() !== manufacturer.toLowerCase()) {
+                        matches = false;
                     }
-                    return true;
+                    
+                    if (partSearch) {
+                        const searchLower = partSearch.toLowerCase();
+                        const nameMatch = part.name.toLowerCase().includes(searchLower);
+                        const refMatch = part.reference.toLowerCase().includes(searchLower);
+                        const mfgMatch = part.manufacturer.toLowerCase().includes(searchLower);
+                        
+                        if (!nameMatch && !refMatch && !mfgMatch) {
+                            matches = false;
+                        }
+                    }
+                    
+                    return matches;
                 });
 
                 displayResults();
@@ -641,7 +731,7 @@
                             <div class="part-header">
                                 <div>
                                     <div class="part-name">${part.name}</div>
-                                    <div class="part-reference">Ref: ${part.reference}</div>
+                                    <div class="part-reference">Ref: ${part.reference} | ${part.manufacturer}</div>
                                 </div>
                                 <div class="part-category">${part.category}</div>
                             </div>
