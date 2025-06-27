@@ -1607,6 +1607,12 @@
                 // Simulate API call or data processing
                 // For now, filter sampleParts based on partSearch
                 searchResults = sampleParts.filter(part => {
+
+                    // Filter by part name or reference
+                    if (partSearchValue && !part.name.toLowerCase().includes(partSearchValue.toLowerCase()) && !part.reference.toLowerCase().includes(partSearchValue.toLowerCase())) {
+                        return sampleParts; // Skip this part if it doesn't match the search value
+                    }
+                    
                     const partNameMatches = partSearchValue ? part.name.toLowerCase().includes(partSearchValue.toLowerCase()) || part.reference.toLowerCase().includes(partSearchValue.toLowerCase()) : true;
                     // You might add more complex filtering based on vehicleBrand, vehicleModel, vehicleMotorisation here
                     return partNameMatches;
