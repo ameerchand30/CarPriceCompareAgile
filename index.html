@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Parts Price Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Basic Styling for the page */
         * {
             margin: 0;
             padding: 0;
@@ -12,16 +14,24 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Inter', Arial, sans-serif; /* Using Inter font */
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Original gradient background */
             color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+            width: 100%; /* Ensure container is responsive */
         }
 
         .header {
@@ -34,6 +44,7 @@
             font-size: 2.8rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
         }
 
         .header p {
@@ -408,6 +419,13 @@
             border: 1px solid #cbd5e0;
             border-radius: 8px;
             font-size: 1rem;
+            appearance: none; /* Custom select arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23495057%22%20d%3D%22M287%20163.5H5.4c-7.5%200-11.5-9.3-6-15.8L141.5%2014c4.3-5.3%2011.5-5.3%2015.8%200l142%20133.6c5.5%206.5%201.5%2015.8-6%2015.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
         }
 
         .license {
@@ -429,6 +447,7 @@
             border-radius: 8px;
             padding: 8px 12px;
             margin-bottom: 15px;
+            width: 100%; /* Ensure input container takes full width */
         }
 
         .license .input img {
@@ -682,31 +701,31 @@
                             <div data-cy="vehicle-selection" class="catalog">
                                 <div class="catalog__select catalog__select--manufacturer">
                                     <select data-cy="select-manufacturer" id="vehicle-brand" class="isHighlighted">
-                                        <option value="" disabled="disabled" hidden="hidden">
+                                        <option value="" disabled="disabled" selected hidden="hidden">
                                             Choisissez une marque
                                         </option>
                                         <optgroup label="Constructeurs principaux">
-                                            </optgroup>
+                                            <!-- Options populated by JS -->
+                                        </optgroup>
                                         <optgroup label="Par ordre alphabétique">
-                                            </optgroup>
+                                            <!-- Options populated by JS -->
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div class="catalog__select catalog__select--series">
                                     <select disabled="disabled" data-cy="select-series" id="vehicle-model" class="">
-                                        <option value="" disabled="disabled" hidden="hidden">
+                                        <option value="" disabled="disabled" selected hidden="hidden">
                                             Choisissez un modèle
                                         </option>
-                                        <optgroup label="Les modèles les plus recherchés"></optgroup>
-                                        <optgroup label="Tous les modèles"></optgroup>
+                                        <!-- Optgroups will be dynamically added/re-added by JS -->
                                     </select>
                                 </div>
                                 <div class="catalog__select catalog__select--model">
                                     <select disabled="disabled" data-cy="select-model" id="vehicle-motorisation" class="">
-                                        <option value="" disabled="disabled" hidden="hidden">
+                                        <option value="" disabled="disabled" selected hidden="hidden">
                                             Choisissez une motorisation
                                         </option>
-                                        <optgroup label="Motorisation les plus choisies"></optgroup>
-                                        <optgroup label="Toutes les motorisations"></optgroup>
+                                        <!-- Optgroups will be dynamically added/re-added by JS -->
                                     </select>
                                 </div>
                             </div>
@@ -734,23 +753,7 @@
                     <label for="part-search">Part Number/Ref/Name</label>
                     <input type="text" id="part-search" placeholder="Enter part number or name...">
                 </div>
-                
-                <div class="form-group">
-                    <label for="engine-capacity">Engine Capacity</label>
-                    <select id="engine-capacity">
-                        <option value="">Select Capacity</option>
-                        <option value="1.0">1.0L</option>
-                        <option value="1.2">1.2L</option>
-                        <option value="1.4">1.4L</option>
-                        <option value="1.6">1.6L</option>
-                        <option value="1.8">1.8L</option>
-                        <option value="2.0">2.0L</option>
-                        <option value="2.2">2.2L</option>
-                        <option value="2.5">2.5L</option>
-                        <option value="3.0">3.0L</option>
-                        <option value="3.5">3.5L</option>
-                    </select>
-                </div>
+                <!-- The "Engine Capacity" form group has been removed as requested -->
             </div>
             <div style="text-align: center;">
                 <button class="search-btn" onclick="searchParts()">🔍 Search Parts</button>
@@ -780,7 +783,7 @@
                                 <li class="filter__attribute">
                                     <label><input type="checkbox" value="Valeo"> 
                                         <picture>
-                                            <!-- Valeo Logo from Wikimedia Commons -->
+                                            <!-- Valeo Logo from Wikimedia Commons (using Volvo logo as placeholder, replace with actual Valeo logo if available) -->
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Volvo_logo.svg" width="82" height="39" alt="Valeo" title="Valeo" loading="eager">
                                         </picture>
                                     </label>    
@@ -794,7 +797,7 @@
                                 </li>
                                 <li class="filter__attribute">
                                     <label><input type="checkbox" value="Mapco"> 
-<picture>
+                                        <picture>
                                             <!-- Mapco Logo from Brandfetch (PNG fallback as SVG is not directly available) -->
                                             <img src="https://cdn.brandfetch.io/idnU35ZC4G/w/250/h/250/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1740808136811" width="82" height="39" alt="Mapco" title="Mapco" loading="eager">
                                         </picture>
@@ -803,8 +806,7 @@
                                 <li class="filter__attribute">
                                     <label><input type="checkbox" value="KAMOKA"> 
                                         <picture>
-                                            <!-- KAMOKA Logo from KAMOKA website (PNG fallback as SVG is not directly available) -->
-                                            
+                                            <!-- KAMOKA Logo from Brandfetch (PNG fallback as SVG is not directly available) -->
                                             <img src="https://cdn.brandfetch.io/idAsrvLMwL/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" width="82" height="39" alt="KAMOKA" title="KAMOKA" loading="eager">
                                         </picture>
                                     </label>
@@ -845,28 +847,487 @@
     </div>
 
     <script>
-        // Car models data
+        // Car models data - Updated to use specific IDs and a nested structure for models
         const carModels = {
-            toyota: ['Yaris', 'Corolla', 'Camry', 'RAV4', 'Prius', 'Avensis', 'Auris', 'C-HR'],
-            citroen: ['C1', 'C3', 'C4', 'C5', 'C6', 'Berlingo', 'Picasso', 'DS3', 'DS4', 'DS5'],
-            peugeot: ['106', '206', '207', '208', '306', '307', '308', '406', '407', '408', '508', 'Expert', 'Partner', '3008', '5008'],
-            renault: ['Clio', 'Megane', 'Scenic', 'Laguna', 'Espace', 'Captur', 'Kadjar', 'Talisman'],
-            volkswagen: ['Golf', 'Polo', 'Passat', 'Tiguan', 'Touran', 'Sharan', 'Jetta', 'Arteon'],
-            bmw: ['Series 1', 'Series 3', 'Series 5', 'Series 7', 'X1', 'X3', 'X5', 'X6'],
-            mercedes: ['A-Class', 'B-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE'],
-            audi: ['A1', 'A3', 'A4', 'A6', 'A8', 'Q2', 'Q3', 'Q5', 'Q7'],
-            ford: ['Fiesta', 'Focus', 'Mondeo', 'Kuga', 'Edge', 'Galaxy', 'S-Max'],
-            opel: ['Corsa', 'Astra', 'Insignia', 'Mokka', 'Crossland', 'Grandland']
+            '585': { // RENAULT
+                principal: [
+                    { id: '6297', name: 'TWINGO II (CN0_) (2007–)' },
+                    { id: '6298', name: 'TWINGO III (BCM_, BCA_) (2014–)' },
+                    { id: '5904', name: 'CLIO IV (BH_) (2012–2021)' },
+                    { id: '5894', name: 'CLIO III (BR0/1, CR0/1) (2005–2014)' },
+                    { id: '6294', name: 'TWINGO I (C06_) (1993–2012)' },
+                    { id: '1643', name: 'SANDERO (2008–)' },
+                    { id: '6303', name: 'ZOE (BFM_) (2012–)' },
+                    { id: '6215', name: 'SCÉNIC III (JZ0/1_) (2008–2016)' },
+                    { id: '6100', name: 'MEGANE III Grandtour (KZ0/1) (2008–2016)' },
+                    { id: '6292', name: 'TRAFIC III Kasten (FG_) (2014–)' }
+                ],
+                all: [
+                    { id: '6126', name: '10 (119_) (1966–1972)' },
+                    { id: '6127', name: '11 (B/C37_) (1983–1995)' },
+                    { id: '6131', name: '12 (117_) (1969–1984)' },
+                    { id: '6132', name: '12 Variable (117_, 133_) (1970–1983)' },
+                    { id: '6133', name: '14 (121_) (1976–1983)' },
+                    { id: '6135', name: '15 (130_) (1971–1980)' },
+                    { id: '6136', name: '16 (115_) (1965–1980)' },
+                    { id: '6137', name: '17 (1972–1980)' },
+                    { id: '6138', name: '18 (134_) (1978–1994)' },
+                    { id: '8362', name: '18 Variable (135_) (1979–1994)' },
+                    { id: '6141', name: '19 I (B/C53_) (1988–1994)' },
+                    { id: '6143', name: '19 I Cabriolet (D53_) (1991–1992)' },
+                    { id: '6144', name: '19 I Chamade (L53_) (1988–1992)' },
+                    { id: '6149', name: '19 II (B/C53_) (1991–2001)' },
+                    { id: '6151', name: '19 II Cabriolet (D53_, 853_) (1992–2001)' },
+                    { id: '6152', name: '19 II Chamade (L53_) (1992–2003)' },
+                    { id: '6153', name: '19 II Kasten/Schrägheck (S53_) (1992–1995)' },
+                    { id: '6155', name: '20 (127_) (1975–1983)' },
+                    { id: '6154', name: '21 (B48_) (1989–1994)' },
+                    { id: '6157', name: '21 Kombi (K48_) (1986–1997)' },
+                    { id: '6158', name: '21 Stufenheck (L48_) (1986–1997)' },
+                    { id: '6162', name: '25 (B29_) (1984–1993)' },
+                    { id: '6165', name: '30 (127_) (1975–1986)' },
+                    { id: '6167', name: '4 (112_) (1962–1993)' },
+                    { id: '9853', name: '4 E-TECH (2025–)' },
+                    { id: '6168', name: '4 Kasten/Großraumlimousine (R21_, R23_) (1966–1993)' },
+                    { id: '9799', name: '5 (2024–)' },
+                    { id: '6173', name: '5 (122_) (1972–1985)' },
+                    { id: '9856', name: '5 E-TECH (2025–)' },
+                    { id: '6178', name: '6 (118_) (1969–1987)' },
+                    { id: '8914', name: '7 (124_) (1975–1982)' },
+                    { id: '6179', name: '8 (113_) (1962–1976)' },
+                    { id: '6180', name: '9 (L42_) (1981–1997)' },
+                    { id: '5857', name: 'ALASKAN (2016–)' },
+                    { id: '9725', name: 'ARKANA I (LCM_, LDN_) (2019–)' },
+                    { id: '9172', name: 'AUSTRAL (2022–)' },
+                    { id: '5858', name: 'AVANTIME (DE0_) (2001–2003)' },
+                    { id: '5867', name: 'CAPTUR I (J5_, H5_) (2013–)' },
+                    { id: '5872', name: 'CAPTUR II (HF_) (2020–)' },
+                    { id: '5877', name: 'CLIO I (B/C57_, 5/357_) (1990–1999)' },
+                    { id: '5884', name: 'CLIO II (BB_, CB_) (1998–2016)' },
+                    { id: '5893', name: 'CLIO II Kasten/Schrägheck (SB0/1/2_) (1998–)' },
+                    { id: '5898', name: 'CLIO III Grandtour (KR0/1_) (2007–)' },
+                    { id: '5900', name: 'CLIO III Kasten/Schrägheck (SB_, SR_) (2005–)' },
+                    { id: '5910', name: 'CLIO IV Grandtour (KH_) (2012–2021)' },
+                    { id: '5909', name: 'CLIO IV Kasten/Kombi (KH_) (2013–2021)' },
+                    { id: '5907', name: 'CLIO IV Kasten/Schrägheck (BH_) (2014–2021)' },
+                    { id: '5913', name: 'CLIO V (B7_) (2019–)' },
+                    { id: '9405', name: 'DAUPHINE (1956–1969)' },
+                    { id: '8357', name: 'DOKKER (2013–)' },
+                    { id: '1628', name: 'DOKKER Kasten/Großraumlimousine (2012–2021)' },
+                    { id: '5918', name: 'DUSTER (HM_) (2017–)' },
+                    { id: '5923', name: 'ESPACE I (J11_) (1984–1992)' },
+                    { id: '5924', name: 'ESPACE II (J/S63_) (1991–1997)' },
+                    { id: '5925', name: 'ESPACE II VAN (J/S63_) (1991–1997)' },
+                    { id: '5927', name: 'ESPACE III (JE0_) (1996–2002)' },
+                    { id: '5930', name: 'ESPACE IV (JK0/1_) (2002–)' },
+                    { id: '5931', name: 'ESPACE V (JR_) (2015–2023)' },
+                    { id: '9275', name: 'ESPACE VI (RHN) (2023–)' },
+                    { id: '5933', name: 'ESTAFETTE (213_) (1962–1981)' },
+                    { id: '8982', name: 'EXPRESS Kasten/Großraumlimousine (2021–)' },
+                    { id: '5936', name: 'FLUENCE (L3_) (2010–)' },
+                    { id: '5938', name: 'FUEGO (136_) (1980–1992)' },
+                    { id: '9759', name: 'GRAND KANGOO III Großraumlimousine (2024–)' },
+                    { id: '5943', name: 'GRAND SCÉNIC II (JM0/1_) (2004–2009)' },
+                    { id: '5947', name: 'GRAND SCÉNIC III (JZ0/1_) (2009–2016)' },
+                    { id: '5953', name: 'GRAND SCÉNIC IV (R9_) (2016–2023)' },
+                    { id: '5956', name: 'KADJAR (HA_, HL_) (2015–)' },
+                    { id: '5959', name: 'KANGOO (KC0/1_) (1997–)' },
+                    { id: '5966', name: 'KANGOO / GRAND KANGOO II (KW0/1_) (2008–)' },
+                    { id: '5967', name: 'KANGOO BE BOP (KW0/1_) (2009–)' },
+                    { id: '8983', name: 'KANGOO III Großraumlimousine (2021–)' },
+                    { id: '8985', name: 'KANGOO III RAPID (2021–)' },
+                    { id: '5958', name: 'KANGOO Rapid (FC0/1_) (1997–)' },
+                    { id: '5963', name: 'KANGOO Rapid (FW0/1_) (2008–)' },
+                    { id: '5972', name: 'KOLEOS I (HY_) (2008–)' },
+                    { id: '5973', name: 'KOLEOS II (HC_) (2016–)' },
+                    { id: '5992', name: 'LAGUNA Coupe (DT0/1) (2008–2015)' },
+                    { id: '5980', name: 'LAGUNA I (B56_, 556_) (1993–2002)' },
+                    { id: '5981', name: 'LAGUNA I Grandtour (K56_) (1995–2002)' },
+                    { id: '5982', name: 'LAGUNA II (BG0/1_) (2001–2007)' },
+                    { id: '5986', name: 'LAGUNA II Grandtour (KG0/1_) (2001–2007)' },
+                    { id: '5990', name: 'LAGUNA III (BT0/1) (2007–2015)' },
+                    { id: '5994', name: 'LAGUNA III Grandtour (KT0/1) (2007–2015)' },
+                    { id: '5996', name: 'LATITUDE (L70_) (2010–)' },
+                    { id: '6001', name: 'LOGAN I (LS_) (2004–)' },
+                    { id: '6000', name: 'LOGAN I Kombi (KS_) (2007–)' },
+                    { id: '9711', name: 'LOGAN II Kombi (K8_) (2013–)' },
+                    { id: '6009', name: 'LOGAN/STEPWAY II (L8_) (2012–)' },
+                    { id: '6021', name: 'MASCOTT Kasten (FH_) (1999–2004)' },
+                    { id: '6022', name: 'MASCOTT Pritsche/Fahrgestell (UH_, HH_) (1999–2005)' },
+                    { id: '6038', name: 'MASTER I Bus (T__) (1980–1998)' },
+                    { id: '6033', name: 'MASTER I Kasten (T__) (1980–1998)' },
+                    { id: '6030', name: 'MASTER I Pritsche/Fahrgestell (P__) (1980–1998)' },
+                    { id: '6053', name: 'MASTER II Bus (JD) (1997–2010)' },
+                    { id: '6044', name: 'MASTER II Kasten (FD) (1997–2013)' },
+                    { id: '6042', name: 'MASTER II Pritsche/Fahrgestell (ED/HD/UD) (1997–2013)' },
+                    { id: '6064', name: 'MASTER III Bus (JV) (2011–)' },
+                    { id: '6057', name: 'MASTER III Kasten (FV) (2010–)' },
+                    { id: '6056', name: 'MASTER III Pritsche/Fahrgestell (EV, HV, UV) (2010–)' },
+                    { id: '9808', name: 'MASTER IV Bus (2024–)' },
+                    { id: '9791', name: 'MASTER IV Kasten (F8__) (2024–)' },
+                    { id: '9809', name: 'MASTER IV Pritsche/Fahrgestell (2024–)' },
+                    { id: '9728', name: 'MASTER PRO Kasten (FH__) (2004–2010)' },
+                    { id: '9729', name: 'MASTER PRO Pritsche/Fahrgestell (HH__, UH__) (2005–2010)' },
+                    { id: '6098', name: 'MEGANE CC (EZ0/1_) (2010–2015)' },
+                    { id: '9612', name: 'MEGANE E-TECH SUV (2021–)' },
+                    { id: '6068', name: 'MEGANE I (BA0/1_) (1995–2004)' },
+                    { id: '6071', name: 'MEGANE I Cabriolet (EA0/1_) (1996–2003)' },
+                    { id: '6074', name: 'MEGANE I Classic (LA0/1_) (1996–2008)' },
+                    { id: '6070', name: 'MEGANE I Coach (DA0/1_) (1996–2003)' },
+                    { id: '6072', name: 'MEGANE I Grandtour (KA0/1_) (1999–2003)' },
+                    { id: '6076', name: 'MEGANE I Hatchback Van (SA0/1_) (1995–2003)' },
+                    { id: '6073', name: 'Megane I Kombi van (KA_) (2000–2003)' },
+                    { id: '6077', name: 'MEGANE II (BM0/1_, CM0/1_) (2001–2012)' },
+                    { id: '6080', name: 'MEGANE II Coupé-Cabriolet (EM0/1_) (2003–2010)' },
+                    { id: '6082', name: 'MEGANE II Grandtour (KM0/1_) (2003–2012)' },
+                    { id: '6089', name: 'MEGANE II Hatchback Van (KM0/2_) (2003–2009)' },
+                    { id: '6083', name: 'MEGANE II Kasten/Kombi (KM_) (2003–2009)' },
+                    { id: '6087', name: 'MEGANE II Stufenheck (LM0/1_) (2003–)' },
+                    { id: '8715', name: 'MEGANE III Combi Van (KZ0/1) (2009–2015)' },
+                    { id: '6095', name: 'MEGANE III Coupe (DZ0/1_) (2008–2016)' },
+                    { id: '8723', name: 'MEGANE III Hatchback Van (BZ_) (2008–2015)' },
+                    { id: '6090', name: 'MEGANE III Schrägheck (BZ0/1_, B3_) (2008–)' },
+                    { id: '6107', name: 'MEGANE IV Grandtour (K9A/M/N_) (2016–)' },
+                    { id: '6104', name: 'MEGANE IV Schrägheck (B9A/M/N_) (2015–)' },
+                    { id: '6112', name: 'MEGANE IV Stufenheck (2016–)' },
+                    { id: '6115', name: 'MEGANE Scénic (JA0/1_) (1996–2001)' },
+                    { id: '6116', name: 'MEGANE Scénic VAN (JA0/1_) (1996–2001)' },
+                    { id: '5941', name: 'MODUS / GRAND MODUS (F/JP0_) (2004–)' },
+                    { id: '9291', name: 'RAFALE Coupe (DGM_) (2023–)' },
+                    { id: '5935', name: 'RAPID Kasten/Großraumlimousine (F40_, G40_) (1985–2001)' },
+                    { id: '9694', name: 'RODEO 4 (ACL_) (1971–1981)' },
+                    { id: '6184', name: 'RODEO 5 (4D_, 5E_) (1981–1987)' },
+                    { id: '6185', name: 'RODEO 6 (ACL_) (1970–1981)' },
+                    { id: '6186', name: 'SAFRANE I (B54_) (1992–1997)' },
+                    { id: '6188', name: 'SAFRANE II (B54_) (1996–2000)' },
+                    { id: '6190', name: 'SANDERO/STEPWAY I (BS_) (2007–)' },
+                    { id: '9411', name: 'SANDERO/STEPWAY II (B8_) (2013–)' },
+                    { id: '9756', name: 'SCENIC E-TECH PHASE I (2023–)' },
+                    { id: '6205', name: 'SCÉNIC I Großraumlimousine (JA0/1_, FA0_) (1999–2010)' },
+                    { id: '6206', name: 'SCÉNIC I VAN (FA0_, JA0/1_) (1999–2010)' },
+                    { id: '6212', name: 'SCÉNIC II (JM0/1_) (2003–2010)' },
+                    { id: '6216', name: 'SCÉNIC III VAN (JZ0/1_) (2008–2016)' },
+                    { id: '6223', name: 'SCÉNIC IV (J9_) (2016–2022)' },
+                    { id: '6224', name: 'SPORT SPIDER (EF0_) (1995–1999)' },
+                    { id: '6171', name: 'SUPER 5 (B/C40_) (1984–1996)' },
+                    { id: '6177', name: 'SUPER 5 Kasten/Schrägheck (S40_) (1984–1996)' },
+                    { id: '9793', name: 'SYMBIOZ (2024–)' },
+                    { id: '6232', name: 'SYMBOL/LOGAN III (L8_) (2013–)' },
+                    { id: '6238', name: 'TALISMAN (LP_) (2015–2022)' },
+                    { id: '6235', name: 'TALISMAN Grandtour (KP_) (2016–2022)' },
+                    { id: '6225', name: 'THALIA I (LB_) (1998–)' },
+                    { id: '6242', name: 'THALIA II (LU_) (2008–)' },
+                    { id: '6253', name: 'TRAFIC Bus (T_, P_, V_) (1989–2001)' },
+                    { id: '6264', name: 'TRAFIC Bus (T_, P_, V_) (1980–1989)' },
+                    { id: '6290', name: 'TRAFIC II Bus (JL) (2001–)' },
+                    { id: '6289', name: 'TRAFIC II Kasten (FL) (2001–)' },
+                    { id: '6288', name: 'TRAFIC II Pritsche/Fahrgestell (EL) (2001–)' },
+                    { id: '6291', name: 'TRAFIC III Bus (JG_) (2014–)' },
+                    { id: '6293', name: 'TRAFIC III Pritsche/Fahrgestell (EG_) (2014–)' },
+                    { id: '6277', name: 'TRAFIC Kasten (T_, P_, V_) (1989–2002)' },
+                    { id: '6251', name: 'TRAFIC Kasten (T_, P_, V_) (1980–1989)' },
+                    { id: '6260', name: 'TRAFIC Pritsche/Fahrgestell (T_, P_, V_) (1980–1989)' },
+                    { id: '6283', name: 'TRAFIC Pritsche/Fahrgestell (T_, P_, V_) (1989–2001)' },
+                    { id: '6295', name: 'TWINGO I Kasten/Schrägheck (S06_) (1993–2012)' },
+                    { id: '6300', name: 'TWIZY (MAM_) (2012–)' },
+                    { id: '6301', name: 'VEL SATIS (BJ0_) (2002–)' },
+                    { id: '6302', name: 'WIND (E4M_) (2010–)' },
+                    { id: '8458', name: 'ZOE Kasten/Schrägheck (BFM_) (2019–)' }
+                ]
+            },
+            '579': { // PEUGEOT
+                principal: [
+                    { id: '3456', name: '208 I (CA_, CC_) (2012-)' },
+                    { id: '7890', name: '308 II (LB_, LP_, LW_, LH_, L3_) (2013-)' }
+                ],
+                all: [
+                    { id: '1234', name: '206 Hatchback (2A/C) (1998-)' },
+                    { id: '5678', name: '3008 SUV (P84) (2016-)' }
+                ]
+            },
+            '522': { // CITROËN
+                principal: [
+                    { id: '9876', name: 'C3 III (SX) (2016-)' },
+                    { id: '5432', name: 'C4 Cactus (0B_, 0P_) (2014-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '603': { // VW
+                principal: [
+                    { id: '1122', name: 'Golf VII (5G1, BQ1, BE1, BE2) (2012-)' },
+                    { id: '3344', name: 'Polo VI (AW1, BZ1, AE1) (2017-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '566': { // MERCEDES-BENZ
+                principal: [
+                    { id: '5566', name: 'C-Class Saloon (W205) (2014-)' },
+                    { id: '7788', name: 'A-Class (W177) (2018-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '578': { // OPEL
+                principal: [
+                    { id: '9900', name: 'Corsa E (X15) (2014-)' },
+                    { id: '1100', name: 'Astra K (B16) (2015-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '516': { // BMW
+                principal: [
+                    { id: '2233', name: '3 Series Saloon (F30, F80) (2011-2018)' },
+                    { id: '4455', name: 'X5 (G05, F95) (2018-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '508': { // AUDI
+                principal: [
+                    { id: '6677', name: 'A3 Sportback (8VA, 8VF) (2012-)' },
+                    { id: '8899', name: 'Q5 (FYB) (2016-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '536': { // FORD
+                principal: [
+                    { id: '1011', name: 'Focus III Hatchback (DYB) (2010-)' },
+                    { id: '1213', name: 'Fiesta VII (GN) (2017-)' }
+                ],
+                all: [] // Add more if needed
+            },
+            '534': { // FIAT
+                principal: [
+                    { id: '1415', name: '500 (312) (2007-)' },
+                    { id: '1617', name: 'Panda III (312, 319) (2012-)' }
+                ],
+                all: [] // Add more if needed
+            }
         };
 
-        // Sample parts data
+        // New object to store motorization data for each model ID
+        const modelMotorizations = {
+            '6297': [ // TWINGO II (CN0_) (2007–)
+                { id: '6f0ffb54', name: '0.9 TCe 90 (BHNF, BHMA, BHMH, BHJK, BHJR) (90 PS / 66 KW / 898 ccm / 2012–2021)' },
+                { id: '9c40f1e3', name: '1.2 16V (73 PS / 54 KW / 1149 ccm / 2012–2021)' }
+            ],
+            '6298': [ // TWINGO III (BCM_, BCA_) (2014–)
+                { id: 't3m1', name: '1.0 SCe 70 (71 PS / 52 KW / 999 ccm / 2014–)' },
+                { id: 't3m2', name: '0.9 TCe 90 (90 PS / 66 KW / 898 ccm / 2014–)' }
+            ],
+            '5904': [ // CLIO IV (BH_) (2012–2021)
+                { id: '6f0ffb54', name: '0.9 TCe 90 (BHNF, BHMA, BHMH, BHJK, BHJR) (90 PS / 66 KW / 898 ccm / 2012–2021)' },
+                { id: '9c40f1e3', name: '1.2 16V (73 PS / 54 KW / 1149 ccm / 2012–2021)' },
+                { id: '5a76c91d', name: '1.5 dCi 90 (90 PS / 66 KW / 1461 ccm / 2012–2021)' },
+                { id: '3bcb4ca8', name: '1.2 TCe 120 (BHM0) (120 PS / 88 KW / 1197 ccm / 2013–2021)' }
+            ],
+            '5894': [ // CLIO III (BR0/1, CR0/1) (2005–2014)
+                { id: 'c3m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2005–2014)' },
+                { id: 'c3m2', name: '1.5 dCi (86 PS / 63 KW / 1461 ccm / 2005–2014)' }
+            ],
+            '6294': [ // TWINGO I (C06_) (1993–2012)
+                { id: 't1m1', name: '1.2 (55 PS / 40 KW / 1149 ccm / 1993–2007)' },
+                { id: 't1m2', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2001–2012)' }
+            ],
+            '1643': [ // SANDERO (2008–)
+                { id: 's1m1', name: '1.4 MPI LPG (72 PS / 53 KW / 1390 ccm / 2008–)' },
+                { id: 's1m2', name: '1.6 (84 PS / 62 KW / 1598 ccm / 2008–)' }
+            ],
+            '6303': [ // ZOE (BFM_) (2012–)
+                { id: 'z1m1', name: 'R110 (109 PS / 80 KW / Electric / 2018–)' },
+                { id: 'z1m2', name: 'Q90 (88 PS / 65 KW / Electric / 2012–2016)' }
+            ],
+            '6215': [ // SCÉNIC III (JZ0/1_) (2008–2016)
+                { id: 'sc3m1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2009–2016)' },
+                { id: 'sc3m2', name: '1.5 dCi (110 PS / 81 KW / 1461 ccm / 2009–2016)' }
+            ],
+            '6100': [ // MEGANE III Grandtour (KZ0/1) (2008–2016)
+                { id: 'mg3m1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2008–2016)' },
+                { id: 'mg3m2', name: '1.5 dCi (110 PS / 81 KW / 1461 ccm / 2009–2016)' }
+            ],
+            '6292': [ // TRAFIC III Kasten (FG_) (2014–)
+                { id: 'tf3m1', name: '1.6 dCi 90 (90 PS / 66 KW / 1598 ccm / 2014–)' },
+                { id: 'tf3m2', name: '1.6 dCi 120 (120 PS / 88 KW / 1598 ccm / 2014–)' }
+            ],
+            // Add motorizations for other models as needed based on the provided data
+            '6126': [{ id: '10m1', name: '0.8 (47 PS / 34 KW / 845 ccm / 1966–1972)' }],
+            '6127': [{ id: '11m1', name: '1.1 (48 PS / 35 KW / 1108 ccm / 1983–1988)' }],
+            '6131': [{ id: '12m1', name: '1.3 (54 PS / 40 KW / 1289 ccm / 1969–1984)' }],
+            '6132': [{ id: '12vm1', name: '1.3 (54 PS / 40 KW / 1289 ccm / 1970–1983)' }],
+            '6133': [{ id: '14m1', name: '1.2 (57 PS / 42 KW / 1218 ccm / 1976–1983)' }],
+            '6135': [{ id: '15m1', name: '1.3 (60 PS / 44 KW / 1289 ccm / 1971–1980)' }],
+            '6136': [{ id: '16m1', name: '1.6 (83 PS / 61 KW / 1565 ccm / 1965–1980)' }],
+            '6137': [{ id: '17m1', name: '1.6 (90 PS / 66 KW / 1647 ccm / 1972–1980)' }],
+            '6138': [{ id: '18m1', name: '1.4 (64 PS / 47 KW / 1397 ccm / 1978–1994)' }],
+            '8362': [{ id: '18vm1', name: '1.4 (64 PS / 47 KW / 1397 ccm / 1979–1994)' }],
+            '6141': [{ id: '19i1m1', name: '1.4 (65 PS / 48 KW / 1397 ccm / 1988–1992)' }],
+            '6143': [{ id: '19icm1', name: '1.8 (90 PS / 66 KW / 1794 ccm / 1991–1992)' }],
+            '6144': [{ id: '19ichm1', name: '1.4 (65 PS / 48 KW / 1397 ccm / 1988–1992)' }],
+            '6149': [{ id: '19ii1m1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 1992–2001)' }],
+            '6151': [{ id: '19iicm1', name: '1.8 (90 PS / 66 KW / 1794 ccm / 1992–2001)' }],
+            '6152': [{ id: '19iichm1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 1992–2003)' }],
+            '6153': [{ id: '19iikm1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 1992–1995)' }],
+            '6155': [{ id: '20m1', name: '1.6 (90 PS / 66 KW / 1647 ccm / 1975–1983)' }],
+            '6154': [{ id: '21m1', name: '1.7 (90 PS / 66 KW / 1721 ccm / 1989–1994)' }],
+            '6157': [{ id: '21km1', name: '1.7 (90 PS / 66 KW / 1721 ccm / 1986–1997)' }],
+            '6158': [{ id: '21sm1', name: '1.7 (90 PS / 66 KW / 1721 ccm / 1986–1997)' }],
+            '6162': [{ id: '25m1', name: '2.0 (101 PS / 74 KW / 1995 ccm / 1984–1993)' }],
+            '6165': [{ id: '30m1', name: '2.6 V6 (131 PS / 96 KW / 2664 ccm / 1975–1986)' }],
+            '6167': [{ id: '4m1', name: '0.8 (34 PS / 25 KW / 845 ccm / 1962–1993)' }],
+            '9853': [{ id: '4etm1', name: 'Electric (130 PS / 96 KW / Electric / 2025–)' }],
+            '6168': [{ id: '4km1', name: '0.8 (34 PS / 25 KW / 845 ccm / 1966–1993)' }],
+            '9799': [{ id: '5m1', name: 'Electric (110 PS / 81 KW / Electric / 2024–)' }],
+            '6173': [{ id: '5_122m1', name: '0.8 (34 PS / 25 KW / 845 ccm / 1972–1985)' }],
+            '9856': [{ id: '5etm1', name: 'Electric (130 PS / 96 KW / Electric / 2025–)' }],
+            '6178': [{ id: '6m1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1969–1987)' }],
+            '8914': [{ id: '7m1', name: '1.3 (54 PS / 40 KW / 1289 ccm / 1975–1982)' }],
+            '6179': [{ id: '8m1', name: '0.9 (44 PS / 32 KW / 845 ccm / 1962–1976)' }],
+            '6180': [{ id: '9m1', name: '1.4 (68 PS / 50 KW / 1397 ccm / 1981–1997)' }],
+            '5857': [{ id: 'alaskanm1', name: '2.3 dCi 160 (163 PS / 120 KW / 2298 ccm / 2016–)' }],
+            '9725': [{ id: 'arkanam1', name: '1.3 TCe 140 (140 PS / 103 KW / 1332 ccm / 2019–)' }],
+            '9172': [{ id: 'australm1', name: '1.2 E-TECH Full Hybrid 200 (200 PS / 147 KW / 1199 ccm / 2022–)' }],
+            '5858': [{ id: 'avantimem1', name: '2.0 16V Turbo (163 PS / 120 KW / 1998 ccm / 2001–2003)' }],
+            '5867': [{ id: 'captur1m1', name: '0.9 TCe 90 (90 PS / 66 KW / 898 ccm / 2013–)' }],
+            '5872': [{ id: 'captur2m1', name: '1.0 TCe 100 (100 PS / 74 KW / 999 ccm / 2020–)' }],
+            '5877': [{ id: 'clio1m1', name: '1.2 (54 PS / 40 KW / 1171 ccm / 1990–1998)' }],
+            '5884': [{ id: 'clio2m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2001–2016)' }],
+            '5893': [{ id: 'clio2km1', name: '1.2 (58 PS / 43 KW / 1149 ccm / 1998–)' }],
+            '5898': [{ id: 'clio3gm1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2007–)' }],
+            '5900': [{ id: 'clio3km1', name: '1.2 (75 PS / 55 KW / 1149 ccm / 2005–)' }],
+            '5910': [{ id: 'clio4gm1', name: '0.9 TCe 90 (90 PS / 66 KW / 898 ccm / 2012–2021)' }],
+            '5909': [{ id: 'clio4kkm1', name: '1.2 16V (73 PS / 54 KW / 1149 ccm / 2013–2021)' }],
+            '5907': [{ id: 'clio4khm1', name: '0.9 TCe 90 (90 PS / 66 KW / 898 ccm / 2014–2021)' }],
+            '5913': [{ id: 'clio5m1', name: '1.0 TCe 100 (100 PS / 74 KW / 999 ccm / 2019–)' }],
+            '9405': [{ id: 'dauphinem1', name: '0.8 (32 PS / 24 KW / 845 ccm / 1956–1969)' }],
+            '8357': [{ id: 'dokkerm1', name: '1.6 LPG (82 PS / 60 KW / 1598 ccm / 2013–)' }],
+            '1628': [{ id: 'dokkerkm1', name: '1.6 (82 PS / 60 KW / 1598 ccm / 2012–2021)' }],
+            '5918': [{ id: 'dusterm1', name: '1.6 SCe 115 (115 PS / 84 KW / 1598 ccm / 2017–)' }],
+            '5923': [{ id: 'espace1m1', name: '2.0 (101 PS / 74 KW / 1995 ccm / 1984–1992)' }],
+            '5924': [{ id: 'espace2m1', name: '2.0 (103 PS / 76 KW / 1995 ccm / 1991–1997)' }],
+            '5925': [{ id: 'espace2vm1', name: '2.0 (103 PS / 76 KW / 1995 ccm / 1991–1997)' }],
+            '5927': [{ id: 'espace3m1', name: '2.0 16V (140 PS / 103 KW / 1998 ccm / 1998–2002)' }],
+            '5930': [{ id: 'espace4m1', name: '2.0 16V (136 PS / 100 KW / 1998 ccm / 2002–)' }],
+            '5931': [{ id: 'espace5m1', name: '1.6 TCe 200 (200 PS / 147 KW / 1618 ccm / 2015–2023)' }],
+            '9275': [{ id: 'espace6m1', name: '1.2 E-TECH Full Hybrid 200 (200 PS / 147 KW / 1199 ccm / 2023–)' }],
+            '5933': [{ id: 'estafettem1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1962–1981)' }],
+            '8982': [{ id: 'expresskm1', name: '1.3 TCe 100 (100 PS / 74 KW / 1332 ccm / 2021–)' }],
+            '5936': [{ id: 'fluencem1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2010–)' }],
+            '5938': [{ id: 'fuegom1', name: '1.6 TL/GTL (96 PS / 70 KW / 1647 ccm / 1980–1985)' }],
+            '9759': [{ id: 'gk3m1', name: '1.3 TCe 130 (130 PS / 96 KW / 1332 ccm / 2024–)' }],
+            '5943': [{ id: 'gscenic2m1', name: '1.6 (113 PS / 83 KW / 1598 ccm / 2004–2009)' }],
+            '5947': [{ id: 'gscenic3m1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2009–2016)' }],
+            '5953': [{ id: 'gscenic4m1', name: '1.2 TCe 115 (115 PS / 85 KW / 1197 ccm / 2016–2023)' }],
+            '5956': [{ id: 'kadjarm1', name: '1.2 TCe 130 (130 PS / 96 KW / 1197 ccm / 2015–)' }],
+            '5959': [{ id: 'kangoo1m1', name: '1.2 (58 PS / 43 KW / 1149 ccm / 1997–)' }],
+            '5966': [{ id: 'kangoo2m1', name: '1.6 (106 PS / 78 KW / 1598 ccm / 2008–)' }],
+            '5967': [{ id: 'kangoo_bepopm1', name: '1.5 dCi (86 PS / 63 KW / 1461 ccm / 2009–)' }],
+            '8983': [{ id: 'kangoo3m1', name: '1.3 TCe 100 (100 PS / 74 KW / 1332 ccm / 2021–)' }],
+            '8985': [{ id: 'kangoo3rm1', name: '1.3 TCe 100 (100 PS / 74 KW / 1332 ccm / 2021–)' }],
+            '5958': [{ id: 'kangoorm1', name: '1.2 (58 PS / 43 KW / 1149 ccm / 1997–)' }],
+            '5963': [{ id: 'kangoor2m1', name: '1.6 (106 PS / 78 KW / 1598 ccm / 2008–)' }],
+            '5972': [{ id: 'koleos1m1', name: '2.5 (171 PS / 126 KW / 2488 ccm / 2008–)' }],
+            '5973': [{ id: 'koleos2m1', name: '2.0 dCi 175 (177 PS / 130 KW / 1995 ccm / 2016–)' }],
+            '5992': [{ id: 'lagunacm1', name: '2.0 16V (140 PS / 103 KW / 1998 ccm / 2008–2015)' }],
+            '5980': [{ id: 'laguna1m1', name: '1.8 (90 PS / 66 KW / 1783 ccm / 1993–2002)' }],
+            '5981': [{ id: 'laguna1gm1', name: '1.8 (90 PS / 66 KW / 1783 ccm / 1995–2002)' }],
+            '5982': [{ id: 'laguna2m1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 2001–2007)' }],
+            '5986': [{ id: 'laguna2gm1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 2001–2007)' }],
+            '5990': [{ id: 'laguna3m1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2007–2015)' }],
+            '5994': [{ id: 'laguna3gm1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2007–2015)' }],
+            '5996': [{ id: 'latitudem1', name: '2.0 16V (139 PS / 102 KW / 1998 ccm / 2010–)' }],
+            '6001': [{ id: 'logan1m1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 2004–)' }],
+            '6000': [{ id: 'logan1km1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 2007–)' }],
+            '9711': [{ id: 'logan2km1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2013–)' }],
+            '6009': [{ id: 'logan2m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2012–)' }],
+            '6021': [{ id: 'mascottkm1', name: '2.8 D (84 PS / 62 KW / 2800 ccm / 1999–2004)' }],
+            '6022': [{ id: 'mascottpm1', name: '2.8 D (84 PS / 62 KW / 2800 ccm / 1999–2005)' }],
+            '6038': [{ id: 'master1bm1', name: '2.0 (78 PS / 57 KW / 1995 ccm / 1980–1998)' }],
+            '6033': [{ id: 'master1km1', name: '2.0 (78 PS / 57 KW / 1995 ccm / 1980–1998)' }],
+            '6030': [{ id: 'master1pm1', name: '2.0 (78 PS / 57 KW / 1995 ccm / 1980–1998)' }],
+            '6053': [{ id: 'master2bm1', name: '2.2 dCi 90 (90 PS / 66 KW / 2188 ccm / 2000–2010)' }],
+            '6044': [{ id: 'master2km1', name: '2.2 dCi 90 (90 PS / 66 KW / 2188 ccm / 2000–2013)' }],
+            '6042': [{ id: 'master2pm1', name: '2.2 dCi 90 (90 PS / 66 KW / 2188 ccm / 2000–2013)' }],
+            '6064': [{ id: 'master3bm1', name: '2.3 dCi 100 (101 PS / 74 KW / 2299 ccm / 2011–)' }],
+            '6057': [{ id: 'master3km1', name: '2.3 dCi 100 (101 PS / 74 KW / 2299 ccm / 2010–)' }],
+            '6056': [{ id: 'master3pm1', name: '2.3 dCi 100 (101 PS / 74 KW / 2299 ccm / 2010–)' }],
+            '9808': [{ id: 'master4bm1', name: '2.3 dCi 130 (130 PS / 96 KW / 2299 ccm / 2024–)' }],
+            '9791': [{ id: 'master4km1', name: '2.3 dCi 130 (130 PS / 96 KW / 2299 ccm / 2024–)' }],
+            '9809': [{ id: 'master4pm1', name: '2.3 dCi 130 (130 PS / 96 KW / 2299 ccm / 2024–)' }],
+            '9728': [{ id: 'masterprokm1', name: '2.5 dCi 100 (99 PS / 73 KW / 2463 ccm / 2004–2010)' }],
+            '9729': [{ id: 'masterpropm1', name: '2.5 dCi 100 (99 PS / 73 KW / 2463 ccm / 2005–2010)' }],
+            '6098': [{ id: 'meganeccm1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2010–2015)' }],
+            '9612': [{ id: 'meganeetm1', name: 'Electric (130 PS / 96 KW / Electric / 2021–)' }],
+            '6068': [{ id: 'megane1m1', name: '1.4 e (75 PS / 55 KW / 1390 ccm / 1995–2004)' }],
+            '6071': [{ id: 'megane1cm1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 1996–2003)' }],
+            '6074': [{ id: 'megane1clm1', name: '1.4 e (75 PS / 55 KW / 1390 ccm / 1996–2008)' }],
+            '6070': [{ id: 'megane1com1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 1996–2003)' }],
+            '6072': [{ id: 'megane1gm1', name: '1.4 16V (95 PS / 70 KW / 1390 ccm / 1999–2003)' }],
+            '6076': [{ id: 'megane1hvm1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 1995–2003)' }],
+            '6073': [{ id: 'megane1kvm1', name: '1.4 16V (95 PS / 70 KW / 1390 ccm / 2000–2003)' }],
+            '6077': [{ id: 'megane2m1', name: '1.4 16V (98 PS / 72 KW / 1390 ccm / 2002–2008)' }],
+            '6080': [{ id: 'megane2ccm1', name: '1.6 (113 PS / 83 KW / 1598 ccm / 2003–2010)' }],
+            '6082': [{ id: 'megane2gm1', name: '1.6 (113 PS / 83 KW / 1598 ccm / 2003–2012)' }],
+            '6089': [{ id: 'megane2hvm1', name: '1.5 dCi (82 PS / 60 KW / 1461 ccm / 2003–2009)' }],
+            '6083': [{ id: 'megane2kkm1', name: '1.5 dCi (82 PS / 60 KW / 1461 ccm / 2003–2009)' }],
+            '6087': [{ id: 'megane2sm1', name: '1.4 (98 PS / 72 KW / 1390 ccm / 2003–)' }],
+            '8715': [{ id: 'megane3cvm1', name: '1.5 dCi (90 PS / 66 KW / 1461 ccm / 2009–2015)' }],
+            '6095': [{ id: 'megane3cm1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2008–2016)' }],
+            '8723': [{ id: 'megane3hvm1', name: '1.5 dCi (90 PS / 66 KW / 1461 ccm / 2008–2015)' }],
+            '6090': [{ id: 'megane3sm1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2008–)' }],
+            '6107': [{ id: 'megane4gm1', name: '1.2 TCe 100 (100 PS / 74 KW / 1197 ccm / 2016–)' }],
+            '6104': [{ id: 'megane4sm1', name: '1.2 TCe 100 (100 PS / 74 KW / 1197 ccm / 2015–)' }],
+            '6112': [{ id: 'megane4stm1', name: '1.2 TCe 100 (100 PS / 74 KW / 1197 ccm / 2016–)' }],
+            '6115': [{ id: 'meganescenicm1', name: '1.6 (90 PS / 66 KW / 1598 ccm / 1996–2001)' }],
+            '6116': [{ id: 'meganescenicvm1', name: '1.6 (90 PS / 66 KW / 1598 ccm / 1996–2001)' }],
+            '5941': [{ id: 'modusm1', name: '1.2 (75 PS / 55 KW / 1149 ccm / 2004–)' }],
+            '9291': [{ id: 'rafalecm1', name: '1.2 E-TECH Full Hybrid 200 (200 PS / 147 KW / 1199 ccm / 2023–)' }],
+            '5935': [{ id: 'rapidkm1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1985–2001)' }],
+            '9694': [{ id: 'rodeo4m1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1971–1981)' }],
+            '6184': [{ id: 'rodeo5m1', name: '1.3 (54 PS / 40 KW / 1289 ccm / 1981–1987)' }],
+            '6185': [{ id: 'rodeo6m1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1970–1981)' }],
+            '6186': [{ id: 'safrane1m1', name: '2.0 (107 PS / 79 KW / 1995 ccm / 1992–1997)' }],
+            '6188': [{ id: 'safrane2m1', name: '2.0 16V (139 PS / 102 KW / 1998 ccm / 1996–2000)' }],
+            '6190': [{ id: 'sandero1m1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 2007–)' }],
+            '9411': [{ id: 'sandero2m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2013–)' }],
+            '9756': [{ id: 'scenice1m1', name: 'Electric (220 PS / 162 KW / Electric / 2023–)' }],
+            '6205': [{ id: 'scenic1gm1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 1999–2010)' }],
+            '6206': [{ id: 'scenic1vm1', name: '1.6 16V (107 PS / 79 KW / 1598 ccm / 1999–2010)' }],
+            '6212': [{ id: 'scenic2m1', name: '1.6 (113 PS / 83 KW / 1598 ccm / 2003–2010)' }],
+            '6216': [{ id: 'scenic3vm1', name: '1.6 16V (110 PS / 81 KW / 1598 ccm / 2008–2016)' }],
+            '6223': [{ id: 'scenic4m1', name: '1.2 TCe 115 (115 PS / 85 KW / 1197 ccm / 2016–2022)' }],
+            '6224': [{ id: 'sportspiderm1', name: '2.0 16V (147 PS / 108 KW / 1998 ccm / 1995–1999)' }],
+            '6171': [{ id: 'super5m1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1984–1996)' }],
+            '6177': [{ id: 'super5km1', name: '1.1 (45 PS / 33 KW / 1108 ccm / 1984–1996)' }],
+            '9793': [{ id: 'symbiozm1', name: '1.6 E-TECH Full Hybrid 145 (145 PS / 105 KW / 1598 ccm / 2024–)' }],
+            '6232': [{ id: 'symbol3m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2013–)' }],
+            '6238': [{ id: 'talismanm1', name: '1.6 TCe 150 (150 PS / 110 KW / 1618 ccm / 2015–2022)' }],
+            '6235': [{ id: 'talisman_gm1', name: '1.6 TCe 150 (150 PS / 110 KW / 1618 ccm / 2016–2022)' }],
+            '6225': [{ id: 'thalia1m1', name: '1.4 (75 PS / 55 KW / 1390 ccm / 1998–)' }],
+            '6242': [{ id: 'thalia2m1', name: '1.2 16V (75 PS / 55 KW / 1149 ccm / 2008–)' }],
+            '6253': [{ id: 'trafic1bm1', name: '1.7 (65 PS / 48 KW / 1721 ccm / 1989–2001)' }],
+            '6264': [{ id: 'trafic1bm2', name: '1.6 (48 PS / 35 KW / 1647 ccm / 1980–1989)' }],
+            '6290': [{ id: 'trafic2bm1', name: '1.9 dCi 80 (82 PS / 60 KW / 1870 ccm / 2001–)' }],
+            '6289': [{ id: 'trafic2km1', name: '1.9 dCi 80 (82 PS / 60 KW / 1870 ccm / 2001–)' }],
+            '6288': [{ id: 'trafic2pm1', name: '1.9 dCi 80 (82 PS / 60 KW / 1870 ccm / 2001–)' }],
+            '6291': [{ id: 'trafic3bm1', name: '1.6 dCi 90 (90 PS / 66 KW / 1598 ccm / 2014–)' }],
+            '6293': [{ id: 'trafic3pm1', name: '1.6 dCi 90 (90 PS / 66 KW / 1598 ccm / 2014–)' }],
+            '6277': [{ id: 'trafic1k2m1', name: '1.7 (65 PS / 48 KW / 1721 ccm / 1989–2002)' }],
+            '6251': [{ id: 'trafic1k1m1', name: '1.6 (48 PS / 35 KW / 1647 ccm / 1980–1989)' }],
+            '6260': [{ id: 'trafic1p1m1', name: '1.6 (48 PS / 35 KW / 1647 ccm / 1980–1989)' }],
+            '6283': [{ id: 'trafic1p2m1', name: '1.7 (65 PS / 48 KW / 1721 ccm / 1989–2001)' }],
+            '6295': [{ id: 'twingo1km1', name: '1.2 (54 PS / 40 KW / 1149 ccm / 1993–2012)' }],
+            '6300': [{ id: 'twizym1', name: 'Electric (5 PS / 4 KW / Electric / 2012–)' }],
+            '6301': [{ id: 'velsatism1', name: '2.0 16V Turbo (163 PS / 120 KW / 1998 ccm / 2002–)' }],
+            '6302': [{ id: 'windm1', name: '1.2 16V (102 PS / 75 KW / 1149 ccm / 2010–)' }],
+            '8458': [{ id: 'zoekm1', name: 'Electric (109 PS / 80 KW / Electric / 2019–)' }]
+        };
+
+        // Sample parts data (kept as is, not directly affected by vehicle catalog data population)
         const sampleParts = [
             {
                 name: 'Brake Pads Front Set',
                 reference: 'BP-2021-FR',
                 category: 'Brake System',
                 manufacturer: 'Brembo',
-                quality: 'Premium', // Added quality
+                quality: 'Premium',
                 suppliers: [
                     { name: 'AutoParts Pro', price: 45.99, delivery: '2-3 days', rating: 4.8, bestPrice: true },
                     { name: 'Car Components', price: 52.50, delivery: '1-2 days', rating: 4.6 },
@@ -879,7 +1340,7 @@
                 reference: 'OF-1520-STD',
                 category: 'Engine Parts',
                 manufacturer: 'Mann Filter',
-                quality: 'Premium', // Added quality
+                quality: 'Premium',
                 suppliers: [
                     { name: 'Filter Express', price: 12.99, delivery: '1-2 days', rating: 4.9, bestPrice: true },
                     { name: 'Engine Parts Co', price: 15.50, delivery: '2-3 days', rating: 4.7 },
@@ -891,7 +1352,7 @@
                 reference: 'SP-NGK-4PCS',
                 category: 'Engine Parts',
                 manufacturer: 'NGK',
-                quality: 'Premium', // Added quality
+                quality: 'Premium',
                 suppliers: [
                     { name: 'Ignition Specialists', price: 28.99, delivery: '1-2 days', rating: 4.8 },
                     { name: 'Performance Parts', price: 26.50, delivery: '2-3 days', rating: 4.9, bestPrice: true },
@@ -904,7 +1365,7 @@
                 reference: 'SA-R-2020',
                 category: 'Suspension',
                 manufacturer: 'Sachs',
-                quality: 'Premium', // Added quality
+                quality: 'Premium',
                 suppliers: [
                     { name: 'Suspension Pro', price: 85.99, delivery: '2-3 days', rating: 4.7, bestPrice: true },
                     { name: 'Comfort Ride', price: 92.50, delivery: '1-2 days', rating: 4.8 },
@@ -916,7 +1377,7 @@
                 reference: 'HL-L-2019',
                 category: 'Electrical',
                 manufacturer: 'Hella',
-                quality: 'Premium', // Added quality
+                quality: 'Premium',
                 suppliers: [
                     { name: 'Lighting Solutions', price: 165.99, delivery: '2-3 days', rating: 4.6 },
                     { name: 'Vision Parts', price: 158.50, delivery: '3-4 days', rating: 4.8, bestPrice: true },
@@ -928,7 +1389,7 @@
                 reference: 'SM-R-ELEC',
                 category: 'Body Parts',
                 manufacturer: 'Magneti Marelli',
-                quality: 'Économique', // Added quality
+                quality: 'Économique',
                 suppliers: [
                     { name: 'Mirror Masters', price: 78.99, delivery: '2-3 days', rating: 4.6 },
                     { name: 'Mirror Solutions', price: 82.50, delivery: '1-2 days', rating: 4.5, bestPrice: true },
@@ -936,10 +1397,10 @@
                 ]
             },
             {
-                name: 'Clutch Kit', // Corresponds to "Kit d'embrayage"
+                name: 'Clutch Kit',
                 reference: 'CK-XYZ-123',
                 category: 'Engine Parts',
-                manufacturer: 'Sachs', // Matches one of the new manufacturers
+                manufacturer: 'Sachs',
                 quality: 'Premium',
                 suppliers: [
                     { name: 'Clutch Pro', price: 250.00, delivery: '2-3 days', rating: 4.7, bestPrice: true },
@@ -950,7 +1411,7 @@
                 name: 'Brake Disc Front',
                 reference: 'BD-FR-ABC',
                 category: 'Brake System',
-                manufacturer: 'Valeo', // Matches one of the new manufacturers
+                manufacturer: 'Valeo',
                 quality: 'Premium',
                 suppliers: [
                     { name: 'Braking Solutions', price: 75.00, delivery: '1-2 days', rating: 4.8, bestPrice: true },
@@ -961,7 +1422,7 @@
                 name: 'Suspension Arm',
                 reference: 'SA-L-XY',
                 category: 'Suspension',
-                manufacturer: 'Mapco', // Matches one of the new manufacturers
+                manufacturer: 'Mapco',
                 quality: 'Économique',
                 suppliers: [
                     { name: 'Ride Smooth', price: 55.00, delivery: '3-4 days', rating: 4.5, bestPrice: true },
@@ -974,114 +1435,156 @@
         let currentFilter = 'all';
         let currentSortOrder = 'asc'; // 'asc' for ascending, 'desc' for descending
 
-        // Update brandSelect and modelSelect to new IDs
-        const brandSelect = document.getElementById('vehicle-brand');
-        const modelSelect = document.getElementById('vehicle-model');
-        const motorisationSelect = document.getElementById('vehicle-motorisation'); // New select for engine type
+        // Manually map the provided brand IDs to their names for display
+        const brandNames = {
+            '585': 'RENAULT',
+            '579': 'PEUGEOT',
+            '522': 'CITROËN',
+            '603': 'VW',
+            '566': 'MERCEDES-BENZ',
+            '578': 'OPEL',
+            '516': 'BMW',
+            '508': 'AUDI',
+            '536': 'FORD',
+            '534': 'FIAT',
+            '100031': 'ABARTH',
+            '501': 'ALFA ROMEO',
+            '520': 'CHEVROLET',
+            '521': 'CHRYSLER',
+            '90004': 'CUPRA',
+            '523': 'DACIA',
+            '525': 'DAEWOO',
+            '527': 'DAIHATSU',
+            '531': 'DODGE',
+            '100003': 'DS',
+            '541': 'HONDA',
+            '543': 'HYUNDAI',
+            '1557': 'INFINITI',
+            '546': 'ISUZU',
+            '547': 'IVECO',
+            '549': 'JAGUAR',
+            '550': 'JEEP',
+            '553': 'KIA',
+            '554': 'LADA',
+            '556': 'LANCIA',
+            '557': 'LAND ROVER',
+            '559': 'LEXUS',
+            '100013': 'MAN',
+            '565': 'MAZDA',
+            '568': 'MG',
+            '569': 'MINI',
+            '570': 'MITSUBISHI',
+            '574': 'NISSAN',
+            '582': 'PORSCHE',
+            '587': 'ROVER',
+            '588': 'SAAB',
+            '589': 'SEAT',
+            '590': 'SKODA',
+            '591': 'SMART',
+            '592': 'SSANGYONG',
+            '594': 'SUBARU',
+            '595': 'SUZUKI',
+            '100025': 'TESLA',
+            '598': 'TOYOTA',
+            '604': 'VOLVO'
+        };
 
 
-        brandSelect.addEventListener('change', function() {
-            const selectedBrand = this.value;
-            modelSelect.innerHTML = '<option value="">Choisissez un modèle</option>';
-            modelSelect.disabled = true;
-            motorisationSelect.innerHTML = '<option value="">Choisissez une motorisation</option>';
-            motorisationSelect.disabled = true;
+        // Function to simulate fetching data (replace with actual API calls)
+        const fetchData = async (type, parentId) => {
+            // In a real application, you would make an actual AJAX call here:
+            // e.g., fetch(`/api/${type}?parentId=${parentId}`)
+            // For this example, we'll use dummy data.
 
-            if (selectedBrand) {
-                const models = carModels[selectedBrand];
-                if (models) {
-                    modelSelect.disabled = false;
-                    const defaultOptionGroup = document.createElement('optgroup');
-                    defaultOptionGroup.label = "Tous les modèles";
-                    models.forEach(model => {
-                        const option = document.createElement('option');
-                        option.value = model.toLowerCase();
-                        option.textContent = model;
-                        defaultOptionGroup.appendChild(option);
-                    });
-                    modelSelect.appendChild(defaultOptionGroup);
-                }
-            }
-        });
+            console.log(`Fetching ${type} for parentId: ${parentId}`);
 
-        // Add event listener for modelSelect to enable motorisationSelect (Engine Type)
-        modelSelect.addEventListener('change', function() {
-            const selectedModel = this.value;
-            motorisationSelect.innerHTML = '<option value="">Choisissez une motorisation</option>';
-            motorisationSelect.disabled = true;
-
-            if (selectedModel) {
-                motorisationSelect.disabled = false;
-                // For demonstration, let's just add common engine types.
-                // In a real application, you'd fetch engine types based on brand and model.
-                const commonEngineTypes = ['Petrol', 'Diesel', 'Hybrid', 'Electric', 'LPG'];
-                const defaultOptionGroup = document.createElement('optgroup');
-                defaultOptionGroup.label = "Toutes les motorisations";
-                commonEngineTypes.forEach(type => {
-                    const option = document.createElement('option');
-                    option.value = type.toLowerCase();
-                    option.textContent = type;
-                    defaultOptionGroup.appendChild(option);
-                });
-                motorisationSelect.appendChild(defaultOptionGroup);
-            }
-        });
+            return new Promise(resolve => {
+                setTimeout(() => { // Simulate network delay
+                    if (type === 'models') {
+                        const brandData = carModels[parentId];
+                        if (brandData) {
+                            // Combine principal and all models, ensuring no duplicates
+                            const allModels = [...brandData.principal, ...brandData.all];
+                            const uniqueModels = Array.from(new Map(allModels.map(item => [item.id, item])).values());
+                            resolve(uniqueModels);
+                        } else {
+                            resolve([]);
+                        }
+                    } else if (type === 'motorizations') {
+                        resolve(modelMotorizations[parentId] || []);
+                    }
+                }, 500);
+            });
+        };
 
         // Function to populate initial car brands
-        function populateCarBrands() {
-            const mainManufacturersOptgroup = brandSelect.querySelector('optgroup[label="Constructeurs principaux"]');
-            const alphabeticalManufacturersOptgroup = brandSelect.querySelector('optgroup[label="Par ordre alphabétique"]');
+        function populateCarBrands(brandSelectElement) {
+            const mainManufacturersOptgroup = brandSelectElement.querySelector('optgroup[label="Constructeurs principaux"]');
+            const alphabeticalManufacturersOptgroup = brandSelectElement.querySelector('optgroup[label="Par ordre alphabétique"]');
 
             // Clear existing options (if any hardcoded or previously populated)
             mainManufacturersOptgroup.innerHTML = '';
             alphabeticalManufacturersOptgroup.innerHTML = '';
 
-            const allBrands = Object.keys(carModels).sort(); // Sort all brands alphabetically
+            // Extract brand IDs from carModels and sort them for alphabetical display
+            const allBrandIds = Object.keys(carModels).sort((a, b) => {
+                const nameA = brandNames[a] || a;
+                const nameB = brandNames[b] || b;
+                return nameA.localeCompare(nameB);
+            });
 
-            // Example of populating "Constructeurs principaux" - you can customize this list
-            const principalManufacturers = ['renault', 'peugeot', 'citroen', 'volkswagen', 'mercedes', 'opel', 'bmw', 'audi', 'ford', 'fiat'];
+            const principalManufacturers = ['585', '579', '522', '603', '566', '578', '516', '508', '536', '534']; // These are the IDs now
             
-            principalManufacturers.forEach(brandKey => {
-                if (carModels[brandKey]) {
+            principalManufacturers.forEach(brandId => {
+                if (brandNames[brandId]) {
                     const option = document.createElement('option');
-                    option.value = brandKey;
-                    option.textContent = brandKey.toUpperCase();
+                    option.value = brandId;
+                    option.textContent = brandNames[brandId];
                     mainManufacturersOptgroup.appendChild(option);
                 }
             });
 
-            allBrands.forEach(brandKey => {
+            allBrandIds.forEach(brandId => {
                 // Avoid duplicating brands already in "Constructeurs principaux"
-                if (!principalManufacturers.includes(brandKey)) {
+                if (!principalManufacturers.includes(brandId) && brandNames[brandId]) {
                     const option = document.createElement('option');
-                    option.value = brandKey;
-                    option.textContent = brandKey.toUpperCase();
+                    option.value = brandId;
+                    option.textContent = brandNames[brandId];
                     alphabeticalManufacturersOptgroup.appendChild(option);
                 }
             });
         }
         
-        // Call populateCarBrands on load
-        window.addEventListener('load', populateCarBrands);
-
-
         async function searchParts() {
-            const vehicleBrand = document.getElementById('vehicle-brand').value;
-            const vehicleModel = document.getElementById('vehicle-model').value;
-            const vehicleMotorisation = document.getElementById('vehicle-motorisation').value;
-            const licensePlate = document.getElementById('license-plate-input').value;
-            
-            const partSearch = document.getElementById('part-search').value;
-            const engineCapacity = document.getElementById('engine-capacity').value;
+            // Get references to the select elements inside searchParts
+            const vehicleBrand = document.getElementById('vehicle-brand');
+            const vehicleModel = document.getElementById('vehicle-model');
+            const vehicleMotorisation = document.getElementById('vehicle-motorisation');
+            const licensePlate = document.getElementById('license-plate-input');
+            const partSearch = document.getElementById('part-search');
 
-            if (!vehicleBrand && !licensePlate && !partSearch) {
-                alert('Please select a vehicle, enter a license plate, or enter a part name/number to search.');
+            // Check if elements exist before accessing their values
+            const brandValue = vehicleBrand ? vehicleBrand.value : '';
+            const modelValue = vehicleModel ? vehicleModel.value : '';
+            const motorisationValue = vehicleMotorisation ? vehicleMotorisation.value : '';
+            const licensePlateValue = licensePlate ? licensePlate.value : '';
+            const partSearchValue = partSearch ? partSearch.value : '';
+
+
+            if (!brandValue && !licensePlateValue && !partSearchValue) {
+                console.log('Please select a vehicle, enter a license plate, or enter a part name/number to search.');
+                displayMessage('Please select a vehicle, enter a license plate, or enter a part name/number to search.', 'error');
                 return;
             }
 
             const resultsContainer = document.getElementById('results-container');
             const partsGrid = document.getElementById('parts-grid');
             const resultsCount = document.getElementById('results-count');
+
+            if (!resultsContainer || !partsGrid || !resultsCount) {
+                console.error("Error: One or more results display elements not found.");
+                return;
+            }
 
             resultsContainer.style.display = 'block';
             resultsCount.textContent = 'Searching...';
@@ -1094,16 +1597,18 @@
 
             try {
                 const searchCriteria = {
-                    vehicleBrand,
-                    vehicleModel,
-                    vehicleMotorisation,
-                    licensePlate,
-                    partSearch,
-                    engineCapacity
+                    vehicleBrand: brandValue,
+                    vehicleModel: modelValue,
+                    vehicleMotorisation: motorisationValue,
+                    licensePlate: licensePlateValue,
+                    partSearch: partSearchValue
                 };
 
+                // Simulate API call or data processing
+                // For now, filter sampleParts based on partSearch
                 searchResults = sampleParts.filter(part => {
-                    const partNameMatches = partSearch ? part.name.toLowerCase().includes(partSearch.toLowerCase()) || part.reference.toLowerCase().includes(partSearch.toLowerCase()) : true;
+                    const partNameMatches = partSearchValue ? part.name.toLowerCase().includes(partSearchValue.toLowerCase()) || part.reference.toLowerCase().includes(partSearchValue.toLowerCase()) : true;
+                    // You might add more complex filtering based on vehicleBrand, vehicleModel, vehicleMotorisation here
                     return partNameMatches;
                 });
 
@@ -1142,6 +1647,12 @@
         function displayResults() {
             const partsGrid = document.getElementById('parts-grid');
             const resultsCount = document.getElementById('results-count');
+            
+            if (!partsGrid || !resultsCount) {
+                console.error("Error: Results display elements not found in displayResults.");
+                return;
+            }
+
             partsGrid.innerHTML = ''; // Clear previous results
 
             let partsToDisplay = [...searchResults]; // Create a copy to sort
@@ -1193,7 +1704,7 @@
                                 <div class="supplier-name">${supplier.name}</div>
                                 <div class="supplier-price">€${supplier.price.toFixed(2)}</div>
                                 <div class="supplier-delivery">${supplier.delivery}</div>
-                                <div class="supplier-rating}>
+                                <div class="supplier-rating">
                                     <span class="stars">${'★'.repeat(Math.floor(supplier.rating))}${'☆'.repeat(5-Math.floor(supplier.rating))}</span>
                                     <span>${supplier.rating}</span>
                                 </div>
@@ -1217,15 +1728,173 @@
         }
 
         function orderPart(supplier, partName) {
-            alert(`Redirecting to ${supplier} to order: ${partName}`);
+            console.log(`Redirecting to ${supplier} to order: ${partName}`);
+            displayMessage(`Redirecting to ${supplier} to order: ${partName}`, 'info');
         }
 
-        // Initialize with some sample results for demonstration
-        window.addEventListener('load', function() {
-            // You can uncomment this to show sample results on load
-            // searchResults = sampleParts;
-            // document.getElementById('results-container').style.display = 'block';
-            // displayResults();
+        function displayMessage(message, type = 'info') {
+            let messageBox = document.getElementById('message-box');
+            if (!messageBox) {
+                messageBox = document.createElement('div');
+                messageBox.id = 'message-box';
+                Object.assign(messageBox.style, {
+                    position: 'fixed',
+                    top: '20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    padding: '15px 25px',
+                    borderRadius: '10px',
+                    boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
+                    zIndex: '1000',
+                    textAlign: 'center',
+                    opacity: '0',
+                    transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
+                    color: 'white',
+                    fontWeight: 'bold'
+                });
+                document.body.appendChild(messageBox);
+            }
+
+            messageBox.textContent = message;
+            if (type === 'error') {
+                messageBox.style.backgroundColor = '#e53e3e'; /* Red for error */
+            } else if (type === 'info') {
+                messageBox.style.backgroundColor = '#4299e1'; /* Blue for info */
+            }
+            
+            messageBox.style.opacity = '1';
+            messageBox.style.transform = 'translateX(-50%) translateY(0)';
+
+            setTimeout(() => {
+                messageBox.style.opacity = '0';
+                messageBox.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    if (messageBox.parentNode) {
+                        messageBox.parentNode.removeChild(messageBox);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        // Global variables for select elements, initialized on DOMContentLoaded
+        let brandSelect;
+        let modelSelect;
+        let motorisationSelect;
+
+        window.addEventListener('DOMContentLoaded', function() {
+            // Get references to the select elements once the DOM is loaded
+            brandSelect = document.getElementById('vehicle-brand');
+            modelSelect = document.getElementById('vehicle-model');
+            motorisationSelect = document.getElementById('vehicle-motorisation');
+
+            // Add defensive checks
+            if (!brandSelect) {
+                console.error("Error: 'vehicle-brand' select element not found.");
+                return;
+            }
+            if (!modelSelect) {
+                console.error("Error: 'vehicle-model' select element not found.");
+                return;
+            }
+            if (!motorisationSelect) {
+                console.error("Error: 'vehicle-motorisation' select element not found.");
+                return;
+            }
+
+            // Populate car brands on load
+            populateCarBrands(brandSelect);
+
+            // Event listener for Manufacturer selection
+            brandSelect.addEventListener('change', async function() {
+                const selectedBrandId = this.value;
+
+                // Reset and disable subsequent dropdowns
+                modelSelect.innerHTML = '<option value="" disabled="disabled" selected hidden="hidden">Choisissez un modèle</option>';
+                modelSelect.disabled = true;
+                motorisationSelect.innerHTML = '<option value="" disabled="disabled" selected hidden="hidden">Choisissez une motorisation</option>';
+                motorisationSelect.disabled = true;
+                modelSelect.classList.remove('isHighlighted');
+                motorisationSelect.classList.remove('isHighlighted');
+
+
+                if (selectedBrandId) {
+                    const models = await fetchData('models', selectedBrandId);
+                    
+                    // Re-add the optgroup elements after clearing innerHTML
+                    const mostSearchedOptgroup = document.createElement('optgroup');
+                    mostSearchedOptgroup.label = "Les modèles les plus recherchés";
+                    modelSelect.appendChild(mostSearchedOptgroup);
+
+                    const allModelsOptgroup = document.createElement('optgroup');
+                    allModelsOptgroup.label = "Tous les modèles";
+                    modelSelect.appendChild(allModelsOptgroup);
+
+                    // Now populate the optgroups
+                    const principalModels = models.slice(0, 10);
+                    principalModels.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.id;
+                        option.textContent = model.name;
+                        mostSearchedOptgroup.appendChild(option);
+                    });
+
+                    models.forEach(model => {
+                        if (!principalModels.some(pModel => pModel.id === model.id)) {
+                            const option = document.createElement('option');
+                            option.value = model.id;
+                            option.textContent = model.name;
+                            allModelsOptgroup.appendChild(option);
+                        }
+                    });
+
+                    modelSelect.disabled = false;
+                    modelSelect.classList.add('isHighlighted');
+                }
+            });
+
+            // Add event listener for modelSelect to enable motorisationSelect (Engine Type)
+            modelSelect.addEventListener('change', async function() {
+                const selectedModelId = this.value;
+
+                // Reset and disable subsequent dropdown
+                motorisationSelect.innerHTML = '<option value="" disabled="disabled" selected hidden="hidden">Choisissez une motorisation</option>';
+                motorisationSelect.disabled = true;
+                motorisationSelect.classList.remove('isHighlighted');
+
+                if (selectedModelId) {
+                    const motorizations = await fetchData('motorizations', selectedModelId);
+                    
+                    // Re-add the optgroup elements after clearing innerHTML
+                    const mostChosenOptgroup = document.createElement('optgroup');
+                    mostChosenOptgroup.label = "Motorisation les plus choisies";
+                    motorisationSelect.appendChild(mostChosenOptgroup);
+
+                    const allMotorizationsOptgroup = document.createElement('optgroup');
+                    allMotorizationsOptgroup.label = "Toutes les motorisations";
+                    motorisationSelect.appendChild(allMotorizationsOptgroup);
+
+                    // Now populate the optgroups
+                    const principalMotorizations = motorizations.slice(0, 4);
+                    principalMotorizations.forEach(motorization => {
+                        const option = document.createElement('option');
+                        option.value = motorization.id;
+                        option.textContent = motorization.name;
+                        mostChosenOptgroup.appendChild(option);
+                    });
+
+                    motorizations.forEach(motorization => {
+                        if (!principalMotorizations.some(pMotorization => pMotorization.id === motorization.id)) {
+                            const option = document.createElement('option');
+                            option.value = motorization.id;
+                            option.textContent = motorization.name;
+                            allMotorizationsOptgroup.appendChild(option);
+                        }
+                    });
+
+                    motorisationSelect.disabled = false;
+                    motorisationSelect.classList.add('isHighlighted');
+                }
+            });
         });
     </script>
 </body>
